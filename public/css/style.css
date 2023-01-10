@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+body{
+	font-family: 'Montserrat', sans-serif;
+}
+main{
+	padding: 0;
+	margin: 0;
+}
+#header > nav {
+	height: 11vh;
+	background-color: #060629;
+	color: #fff;
+	font-weight: 600;
+}
+.nav-div{
+	height: 100%;
+}
+/* #logo{
+	max-height: 100%;
+} */
+nav > div > div > div > a{
+	text-decoration: none;
+	color: #fff;
+}
+#navbarNavAltMarkup{
+	background-color: #060629;
+}
+
+#ad-section {
+	padding: 0;
+	margin: 0 ;
+}
+  
+#ad-container {
+	width: 100%;
+	height: 800px;
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	align-content: flex-end;
+}
+  
+#ad-video {
+	position: relative;
+	object-fit: cover;
+	/* width: 100%;
+	height: 100%; */
+	z-index: -1;
+}
+  
+  #ad-content {
+	position: absolute;
+	right: 0;
+	color: #fff;
+	margin: 20rem 10rem;
+	padding: 5rem;
+	background-color: #00000052;
+	align-self: flex-end;
+	border-radius: 1rem;
+}
+.about{
+	padding: 50px;
+	font-family: 'Montserrat', sans-serif;
+	text-align: justify;
+}
+.about > .row{
+	width: 100%;
+}
+.about > .header {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 2rem;
+}
+.about > .body{
+	line-height: 30px;
+}
+.about-img{
+	background: url('../../public/images/3-children.jpg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position-y: center;
+}
+.impact{
+	background: url('../../public/images/map.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-position-y: center; */
+}
+.impact > div > .header{
+	font-size: 3rem;
+	font-weight: 600;
+}
+.impact > div{
+	background-color: #ffffffb2;
+}
+.header > span{
+	font-family: 'Rock Salt', cursive;
+}
+.box > div{
+	width: 180px;
+}
+.box > div > .number, .contact-header{
+	font-size: 2rem;
+	font-weight: 600;
+}
+.box > div > .line{
+	background-color: #4076ef;
+	height: 10px;
+	width: 100%;
+}
+.box > div > div:nth-child(3){
+	width: 60%;
+	font-family: 'Montserrat', sans-serif;
+}
+.buttons > .btn{
+	background-color: #4076ef;
+	color: #fff;
+	border-radius: 3px;
+	border: 1px solid #060629;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+}
+.buttons > .btn:hover{
+	background-color: #060629;
+	font-weight: bold;
+}
+.blog-header{
+	font-size: 3rem;
+	font-weight: 600;
+	color: #060629;
+	text-transform: uppercase;
+}
+.blog-posts > div{
+	width: 300px;
+}
+.post-header, .view-more-blog-posts{
+	font-size: 1.5rem
+}
+.post-body > p:nth-child(2):hover, .view-more-blog-posts:hover{
+	color: #4076ef;
+	cursor: pointer;
+}
+.social > div{
+	background-color: #060629;
+	color: #fff;
+	font-size: 18px;
+}
+
+.lab{
+	font-size: 25px;
+	color: #fff;
+}
+
+
+
+
+/* -------------------------------about------------------------------ */
+
+.header-about{
+	background: url('../../public/images/about-header.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 80vh;
+	width: 100vh;
+	/* padding: 40vw */
+}
+.header-children-homes{
+	background: url('../../public/images/hungry-kid.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 50vh;
+	width: 100vh;
+	background-color: #4076ef;
+}
+.admin_login{
+	background-color: #4076ef;
+	padding: 100px;
+	width: 100%;
+	height: 100%;
+}
+.header-about2 > div{
+	padding: 100px;
+	background-color: #00000096;
+	width: 100%;
+	height: 100%;
+	color: #ffffff;
+}
+.header-about2 > div > h1{
+	font-family: cursive;
+	font-size: 4rem;
+	/* line-height: 200px; */
+}
+.header-about2 > div > h4{
+	font-size: 2rem;
+}
+.orphanage-page{
+	max-height: 80vh;
+	width: 100vh;
+}
+.overview > p{
+	line-height: 30px;
+}
+.contact-info{
+	font-size: 20px;
+}
+.indicator-green{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: #04f704;
+}
+.indicator-grey{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: #5e5f5e;
+}
+
+@media only screen and (max-width: 600px) {
+    #regForm {
+        width: 100%;
+	}
+	.header-about2 > div > h1{
+		font-size: 10vw;
+	}
+	.header-about2 > div > h4{
+		font-size: 8vw;
+	}
+	.social > div{
+		font-size: 5vw;
+	}
+}
