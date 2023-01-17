@@ -60,7 +60,7 @@
                 <div style="overflow:auto;">
                     <div style="float:left; line-height: 10px; font-size: 13px">
                         <p style="color: red">Already Registered? </p>
-                        <p><a href="<?=base_url('index.php/Login/index#loginForm')?>">Click here</a> to Login</p>
+                        <p><a href="<?=base_url('Login/index#loginForm')?>">Click here</a> to Login</p>
                     </div>
                     <div style="float:right;">
                         <button type="button" id="prevBtn">Previous</button>

@@ -23,7 +23,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('id'))
 		{
-			redirect('index.php/Dashboard');
+			redirect('Dashboard');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encrypt');

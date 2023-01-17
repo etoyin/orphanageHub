@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
         {
             $this->session->unset_userdata($row);
         }
-        redirect('index.php/Login');
+        redirect('Login');
     }
 
 

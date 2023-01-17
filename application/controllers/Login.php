@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('id'))
 		{
-			redirect('index.php/Dashboard');
+			redirect('Dashboard');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encrypt');
@@ -57,14 +57,19 @@ class Login extends CI_Controller {
 
 			if($result == '')
 			{
-				// echo json_encode($result);
-				redirect('index.php/Dashboard');
+				// $data1['status'] = 1;
+				// $data1['message'] = "Welcome!!";
+
+				// echo json_encode($data1);
+				redirect('Dashboard');
 			}
 			else
 			{
-                echo json_encode($result);
-				// $this->session->set_flashdata('message',$result);
-				// redirect('index');
+				$data1['status'] = 0;
+				$data1['message'] = $result;
+                // echo json_encode($data1);
+				$this->session->set_flashdata('message',$result);
+				redirect('Login');
 			}
 		}
 	}

@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+body{
+	font-family: 'Montserrat', sans-serif !important;
+}  
+.body{
+    padding: 0;
+    margin: 0;
+}  
+  .leftSidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #060629;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+  }
+  .leftSidenav > div:hover{
+      background-color: #157CB0;
+  }
+  .sidenav {
+    height: 100%;
+    width: 376px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    border: 1px solid #E9EEF1;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+  }
+  
+  .leftSidenav a {
+    padding: 20px 20px 20px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+  }
+  .logo{
+      font-size: 25px !important;
+  }
+  .sidenav a:hover, .leftSidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+.closebtn {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+    color: #f1f1f1;
+}
+#main{
+      margin-left: 243px;
+}
+.top2{
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid #cacbcc;
+}
+.content-right{
+    display: flex;
+}
+.content-right > div{
+    margin-right: 30px;
+    padding: 0 15px 0 15px;
+}
+.content > h3{
+    line-height: 10px;
+}
+.content > p{
+    font-size: 13px;
+    line-height: 5px;
+}
+.plus-icon, .menu-icon, .fa-search{
+    font-size: 25px;
+    color: #3D92EC;
+    cursor: pointer;
+}
+.plus-icon:hover{
+    background-color: #3D92EC;
+    color: #ffffff;
+}
+.plus-icon{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 2px 0 0 12px !important
+}
+.search-bar, .plus-icon{
+    border: 1px solid #3D92EC;
+}
+.search-bar > input, .side-body > div > div > textarea{
+    border: none;
+    height: 95%;
+}
+.search-bar > input:focus, .side-body > div > div > textarea:focus{
+    outline: none;
+}
+.center-word{
+    padding: 40px;
+    /* background-color: #8b94a7; */
+}
+
+/* ========================================================================= */
+
+.cards > div{
+    width: 300px !important;
+    height: 160px;
+    font-size: 15px;
+    color: #ffffff;
+}
+.image-icon{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    font-size: 4rem;
+}
+.number{
+    font-size: 3rem;
+}
+.more-info{
+    background-color: #0000001c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+}
+.calendar-card{
+    width: 400px;
+}
+@media screen and (max-width: 750px) {
+    .closebtn{
+        display: block;
+    }
+    #main{
+        margin-left: 0px;
+    }
+    .leftSidenav{
+        width: 0;
+    }
+    .calendar-card{
+        width: 100%
+    }
+    
+}

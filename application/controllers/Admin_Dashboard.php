@@ -1,9 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-header("Access-Control-Allow-Methods: GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
 
-class Admin extends CI_Controller {
+class Admin_Dashboard extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,9 +21,9 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if($this->session->userdata('adminId'))
+		if(!$this->session->userdata('adminId'))
 		{
-			redirect('Admin_Dashboard');
+			redirect('Admin');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encrypt');
@@ -35,47 +33,10 @@ class Admin extends CI_Controller {
 	public function index()
 	{
         $this->load->helper('url');
-		$this->load->template('admin_login', array('title' => 'Admin Login'));
+		$this->load->admin_template('admin_view/admin_dashboard', array('title' => 'Admin Dashboard'));
 	}
 
-	public function admin_login()
-	{
-		$this->form_validation->set_rules('username', 'Username', 'required|min_length[2]');		
-		$this->form_validation->set_rules('password', 'Password', 'required');
-
-		if ($this->form_validation->run() == FALSE) {
-			// $data['response'] = 'failed';
-			$data = validation_errors();
-			
-			$this->session->set_flashdata('message',$data);
-			redirect('Admin');
-		}
-		else{
-			$data = array(
-				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password'),
-			);
-
-			$result = $this->Admin_model->can_login($data);
-
-			if($result == '')
-			{
-				$data1['status'] = 1;
-				$data1['message'] = "Welcome!!";
-
-				//echo json_encode($data1);
-				redirect('Admin_Dashboard');
-			}
-			else
-			{
-				$data1['status'] = 0;
-				$data1['message'] = $result;
-                echo json_encode($data1);
-				$this->session->set_flashdata('message',$result);
-				redirect('Admin');
-			}
-		}
-	}
+	
 
 	public function admin_reg()
 	{
@@ -111,5 +72,15 @@ class Admin extends CI_Controller {
 			}	
 		}
 	}
+
+	function logout()
+    {
+        $data = $this->session->all_userdata();
+        foreach($data as $row => $rows_value)
+        {
+            $this->session->unset_userdata($row);
+        }
+        redirect('Admin');
+    }
 
 }

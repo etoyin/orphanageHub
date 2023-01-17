@@ -28,14 +28,25 @@
         <div class=" header-about2" style="width: 100%">
             <div class="text-center">
                 <h1>Admin Login</h1>
+                
             </div>
         </div>
     </main>
     <section>
         <div>
-            <form id="loginForm" >
+            <form id="AdminLoginForm" method="post" action="Admin/admin_login">
                 <!-- One "tab" for each step in the form: -->
-                <div class="tab">Login Info:
+                <div class="tabu">Login Info:
+                    <?php
+                    if($this->session->flashdata('message'))
+                        {
+                            echo '
+                            <div class="alert alert-danger">
+                                '.$this->session->flashdata("message").'
+                            </div>
+                            ';
+                        }
+                    ?>
                     <p class="errorField" errorField="username">Enter Username</p>
                     <p><input class="input required" id="username" errorField="username" placeholder="Username..." name="username"></p>
                     <p class="errorField" errorField="password">Enter password more than 6 digits</p>
@@ -43,7 +54,7 @@
                 </div>
                 <div style="overflow:auto;">
                     <div style="float:right;">
-                        <button type="button" id="submit_admin" type="submit">Login</button>
+                        <button type="button" id="admin_submit_admin" type="submit">Login</button>
                     </div>
                 </div>
             </form>

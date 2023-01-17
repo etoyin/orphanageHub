@@ -8,7 +8,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-#regForm, #loginForm {
+#regForm, #loginForm, #AdminLoginForm {
     background-color: #ffffff;
     margin: 10px auto;
     font-family: 'Montserrat', sans-serif;

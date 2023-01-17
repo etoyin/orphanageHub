@@ -27,8 +27,8 @@
     <main class="about-main">
         <div class="header-children-homes header-about2" style="width: 100%">
             <div class="text-center">
-                <h1>Register</h1>
-                <h4>Your Orphanage Here</h4>
+                <h1>Login</h1>
+                <h4>Access your account here!!</h4>
             </div>
         </div>
     </main>
@@ -36,6 +36,16 @@
         <div>
             <form id="loginForm"  method="post" action="Login/login">
                 <h1>Login:</h1>
+                <?php
+                if($this->session->flashdata('message'))
+                    {
+                        echo '
+                        <div class="alert alert-danger">
+                            '.$this->session->flashdata("message").'
+                        </div>
+                        ';
+                    }
+                ?>
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">Login Info:
                     <p class="errorField" errorField="email">Enter Email</p>
@@ -46,7 +56,7 @@
                 <div style="overflow:auto;">
                     <div style="float:left; line-height: 10px; font-size: 13px">
                         <p style="color: red">Don't have an account? </p>
-                        <p><a href="<?=base_url('index.php/User/register#regForm')?>">Click here</a> to register</p>
+                        <p><a href="<?=base_url('User/register#regForm')?>">Click here</a> to register</p>
                     </div>
                     <div style="float:right;">
                         <button type="button" id="submitLoginBtn" type="submit">Login</button>
