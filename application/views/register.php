@@ -34,8 +34,18 @@
     </main>
     <section>
         <div>
-            <form id="regForm">
-                <h1>Register:</h1>
+            <form id="regForm" >
+                <h3>Register:</h3>
+                <?php
+                if($this->session->flashdata('message'))
+                    {
+                        echo '
+                        <div class="alert alert-success">
+                            '.$this->session->flashdata("message").'
+                        </div>
+                        ';
+                    }
+                ?>
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">Name:
                     <p class="errorField" errorField="name">Enter Name of Orphanage</p>
@@ -48,6 +58,21 @@
                     <p><input class="input required" id="phone" errorField="phone" placeholder="Phone Number..." name="phone"></p>
                     <p class="errorField" errorField="address">Enter Phone Number</p>
                     <p><input class="input required" id="address" errorField="address" placeholder="Address..." name="address"></p>
+                </div>
+                <div class="tab">Upload orphanage cover image:                  
+                    <div class="overlay_upload_content">
+                        <div class="uploadFlexContainer">
+                            <p class="errorField" errorField="profilePicture">Upload and Image and Select Image type</p>
+                            <div class="drop-zone">
+                            <span class="drop-zone__prompt">Drop file here or click to upload (</span>
+                            <!-- <div class="drop-zone__thumb" data-label="file.txt "></div> -->
+                            <input type="file" name="image" class="drop-zone__input required" id="profilePicture" >
+                            </div>
+                            <!-- <button style="margin-top: 10px" id="submitUpload" class="btn-primary form-control nextFormSlide">Next</button> -->
+                        
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="tab">Login Info:
                     <p class="errorField" errorField="email">Enter Email</p>

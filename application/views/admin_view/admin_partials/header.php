@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin | <?=$title?></title>
 <link rel="stylesheet" href="<?=base_url('public/css/admin.css')?>">
 <link rel="stylesheet" href="<?=base_url('public/css/calendar.css')?>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,15 +19,18 @@
     <div id="leftSidenav" class="leftSidenav">
         <div class="closebtn"><i class="las la-window-close"></i></div>
         <div style="background-color: #060629">
-            <a class="navbar-brand" style="height: 100%" href="<?=base_url('Admin_Dashboard')?>">
+            <a class="navbar-brand" style="height: 100%" href="<?=base_url('Admin_Dashboard/index')?>">
                 <img id="logo" height="100%" width="100%" src="<?=base_url('public/images/orphanage-crop-navyblue-bg.png')?>" alt="">
             </a>
         </div>
         <div>
-            <a href="#">Item Search</a>
+            <a href="add_admin_view">Add an Admin</a>
         </div>
         <div>
-            <a href="#">Item</a>
+            <a href="all_admin_view">View Admin</a>
+        </div>
+        <div>
+            <a href="all_orphanages_view">Verify Orphanages</a>
         </div>
         <div>
             <a href="#">Item</a>

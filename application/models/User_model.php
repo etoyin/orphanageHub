@@ -10,6 +10,45 @@
             return true;
         }
 
+        // UPDATE `images` SET `orphanage_id` = '13' WHERE `images`.`id` = 2;
+        public function getAllOrphanage()
+        {
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+                                            verified, mission_statement, address, boys, girls, owner, 
+                                            location, cover_photo FROM orphanages_users");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
+        public function update_data($id, $column_name, $field_to_be_updated)
+        {
+            if($this->db->query("UPDATE orphanages_users as a SET a.$column_name=\"$field_to_be_updated\" WHERE id=$id")){
+                $data['success'] = 1;
+                $data['message'] = "Successful";
+            }
+            else{
+                $data['success'] = 0;
+                $data['message'] = "Failed";
+            }
+            return $data;
+        }
+
+        public function getOneOrphanage($id)
+        {
+            $query = $this->db->query("SELECT * FROM orphanages_users WHERE id=$id");
+            $result=$query->result();
+            return $result;
+        }
+
+        public function getVerifiedOrphanage()
+        {
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+                                            verified, mission_statement, address, boys, girls, owner, 
+                                            location, cover_photo FROM orphanages_users WHERE verified = 1");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
         public function email_exists($data){
             $this->db->where('email',$data);
             $query = $this->db->get('orphanages_users');
@@ -19,6 +58,21 @@
             else{
                 return false;
             }
+        }
+
+        public function open_for_adoption($id, $open)
+        {
+            $data['id'] = $id;
+            $data['open_for_adoption'] = $open;
+            if($this->db->query("UPDATE orphanages_users SET open_for_adoption=$open WHERE id=$id")){
+                $data['success'] = 1;
+                $data['message'] = "Successful";
+            }
+            else{
+                $data['success'] = 0;
+                $data['message'] = "Failed";
+            }
+            return $data;
         }
 
         public function can_login($data)
@@ -50,6 +104,23 @@
             else
             {
                 return 'Wrong Email Address';
+            }
+        }
+
+
+        function verify_email($key)
+        {
+            $this->db->where('verification_key', $key);
+            $this->db->where('email_verified', 0);
+            $query = $this->db->get('orphanages_users');
+            if($query->num_rows() > 0)
+            {
+                $this->db->query("UPDATE orphanages_users SET email_verified=1 WHERE verification_key=$key");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

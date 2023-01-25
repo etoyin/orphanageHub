@@ -25,7 +25,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		if($this->session->userdata('adminId'))
 		{
-			redirect('Admin_Dashboard');
+			redirect('Admin_Dashboard/index');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encrypt');
@@ -48,7 +48,7 @@ class Admin extends CI_Controller {
 			$data = validation_errors();
 			
 			$this->session->set_flashdata('message',$data);
-			redirect('Admin');
+			redirect('Admin/index');
 		}
 		else{
 			$data = array(
@@ -64,7 +64,7 @@ class Admin extends CI_Controller {
 				$data1['message'] = "Welcome!!";
 
 				//echo json_encode($data1);
-				redirect('Admin_Dashboard');
+				redirect('Admin_Dashboard/index');
 			}
 			else
 			{
@@ -72,7 +72,7 @@ class Admin extends CI_Controller {
 				$data1['message'] = $result;
                 echo json_encode($data1);
 				$this->session->set_flashdata('message',$result);
-				redirect('Admin');
+				redirect('Admin/index');
 			}
 		}
 	}

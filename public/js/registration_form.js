@@ -1,11 +1,91 @@
 $(".ok").click(function(){
     $(".overlay_success, .overlay_error").css("width", "0");    
 })
+$(".hideOverlay").click(function(){
+    $(".overlay_upload_images").css("display", "none");
+})
 
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+    const dropZoneElement = inputElement.closest(".drop-zone");
+
+    dropZoneElement.addEventListener('click', (e) => {
+        inputElement.click();
+    })
+    inputElement.addEventListener('change', () => {
+        if(inputElement.files.length){
+            fileInput = inputElement.files;
+            console.log(inputElement.files[0].width);
+            updateThumbnail(dropZoneElement, inputElement.files[0]);
+        }
+    })
+
+    dropZoneElement.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZoneElement.classList.add("drop-zone--over")
+    });
+    ["dragleave", "dragend"].map((type) => {
+        dropZoneElement.addEventListener(type, (e) => {
+            dropZoneElement.classList.remove("drop-zone--over")
+        });
+    })
+
+    dropZoneElement.addEventListener('drop', (e) => {
+        e.preventDefault();
+
+        if(e.dataTransfer.files.length){
+            // let inputElement = $(this);
+            inputElement.files = e.dataTransfer.files;
+            fileInput = inputElement.files;
+            updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+        }
+
+        dropZoneElement.classList.remove("drop-zone--over");
+    });
+})
+
+function updateThumbnail(dropZoneElement, file){
+        
+    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+
+    //first time remove the prompt from div
+    if(dropZoneElement.querySelector(".drop-zone__prompt")){
+        dropZoneElement.querySelector(".drop-zone__prompt").remove();
+    }
+    // first time there's no thumbnail element so we create it
+    if(!thumbnailElement){
+        thumbnailElement = document.createElement("div");
+        thumbnailElement.classList.add("drop-zone__thumb");
+        dropZoneElement.appendChild(thumbnailElement);
+    }
+
+    thumbnailElement.dataset.label = file.name;
+
+    if(file.type.startsWith("image/")){
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = function(){
+            thumbnailElement.style.backgroundImage = `url("${reader.result}")`;
+        }
+    }
+    else{
+        $(".drop-zone__thumb").css("background-image", null)
+    }
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 let state = {};
+let fileInput;
+let imgFile;
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
-
+var _URL = window.URL || window.webkitURL;
 let pswd;
 
 $("#submitBtn").on("click", function(e){
@@ -99,6 +179,7 @@ $("#submitBtn").on("click", function(e){
         fd.append('password', state.password);
         fd.append('phone', state.phone);
         fd.append('owner', state.owner);
+        fd.append('image', fileInput[0]);
         
         // function pageRedirect() {
         //   window.location.replace('/');
@@ -132,7 +213,7 @@ $("#submitBtn").on("click", function(e){
 
 
 
-$("#nextBtn").click(function(){
+$("#nextBtn, .nextFormSlide").click(function(){
     if (currentTab < ($(".tab").length - 1)) {
         nextPrev(1)
     }
@@ -216,6 +297,87 @@ function validateForm() {
                             }
                         });
         
+                    }
+                    break;
+                case "profilePicture":
+                    var file, img; 
+                    var dimension = {};
+                    let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                    if(fileInput && fileInput.length){
+                        file = fileInput[0];
+                        fileSize = Math.round((file.size / 1024));
+                        console.log(file);
+                        img = new Image();
+                        var objectUrl = _URL.createObjectURL(file);
+                        img.onload = function () {
+                            // alert(this.width + " " + this.height);
+                            dimension.width = this.width;
+                            dimension.height = this.height;
+                            _URL.revokeObjectURL(objectUrl);
+                        };
+                        img.src = objectUrl;
+                        if (dimension.width/dimension.height < 1.3){
+                            valid  = false;
+                            $(this).addClass("invalid");
+                            let attr = $(this).attr("id");
+                            $(".errorField").each(function(){
+                                if($(this).attr("errorField") == attr){
+                                    $(this).text("Error!!! Your picture should be in landscape form!");
+                                    $(this).css("display", "block");
+                                }
+                            });
+                        }else if (fileSize > 16000){
+                            valid  = false;
+                            $(this).addClass("invalid");
+                            let attr = $(this).attr("id");
+                            $(".errorField").each(function(){
+                                if($(this).attr("errorField") == attr){
+                                    $(this).text("Error!!! Your picture is too large, upload a file below 15mb!");
+                                    $(this).css("display", "block");
+                                }
+                            });
+                        }else if (fileSize < 500){
+                            valid  = false;
+                            $(this).addClass("invalid");
+                            let attr = $(this).attr("id");
+                            $(".errorField").each(function(){
+                                if($(this).attr("errorField") == attr){
+                                    $(this).text("Error!!! Your picture is too small, upload a file above 500kb!");
+                                    $(this).css("display", "block");
+                                }
+                            });
+                        } else if (!allowedExtensions.exec(file.name)){
+                            valid  = false;
+                            $(this).addClass("invalid");
+                            let attr = $(this).attr("id");
+                            $(".errorField").each(function(){
+                                if($(this).attr("errorField") == attr){
+                                    $(this).text("Error!!! Your file must be a picture!");
+                                    $(this).css("display", "block");
+                                }
+                            });
+                        }                        
+                        else{
+                            valid  = true;
+                            $(this).removeClass("invalid");
+                            let attr = $(this).attr("id");
+                            $(".errorField").each(function(){
+                                if($(this).attr("errorField") == attr){
+                                    $(this).css("display", "none");
+                                }
+                            });
+                        }
+                    }
+                    else{
+                        // console.log("kgkgk");
+                        valid  = false;
+                        $(this).addClass("invalid");
+                        let attr = $(this).attr("id");
+                        $(".errorField").each(function(){
+                            if($(this).attr("errorField") == attr){
+                                $(this).css("display", "block");
+                            }
+                        });
                     }
                     break;
                 default:

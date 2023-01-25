@@ -42,6 +42,8 @@ function toggleShowNav() {
 
 </script>
 <script src="<?=base_url('public/js/calendar.js')?>"></script>
+<script src="<?=base_url('public/js/admin_dashboard.js')?>"></script>
+<script src="<?=base_url('public/js/switch.js')?>"></script>
    
 </body>
 </html> 

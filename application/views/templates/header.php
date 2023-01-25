@@ -46,9 +46,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto links">
-                        <a data="home" class="nav-item nav-link ml-5 active" href="<?=base_url('Home')?>">Home <span class="sr-only">(current)</span></a>
+                        <a data="home" class="nav-item nav-link ml-5 active" href="<?=base_url('Home/index')?>">Home <span class="sr-only">(current)</span></a>
                         <a data="about" class="nav-item nav-link ml-5 active" href="<?=base_url('About')?>">About Us</a>
-                        <a data="orphanages" class="nav-item nav-link ml-5 active" >Orphanages</a>
+                        <a data="orphanages" class="nav-item nav-link ml-5 active" href="<?=base_url('Children_Homes/index')?>">Orphanages</a>
                         <a data="blog" class="nav-item nav-link ml-5 active" href="#">Blog</a>
                         <a data="donate" class="nav-item nav-link ml-5 active" href="#">Donate</a>
                         <?php
@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 echo '<a data="register" class="nav-item nav-link ml-5 active" href="'.base_url('Dashboard/logout').'">Logout</a>';
                             }
                             else{
-                                echo '<a data="register" class="nav-item nav-link ml-5 active" href="'.base_url('Login/login').'">Register/Login</a>';
+                                echo '<a data="register" class="nav-item nav-link ml-5 active" href="'.base_url('Login/index').'">Register/Login</a>';
                             }
                         ?>
                     </div>

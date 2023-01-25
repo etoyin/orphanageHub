@@ -12,6 +12,112 @@ $(document).ready(function(){
         else{
             $(".card-div").css("position", "static");
         }
+    });
+    // $(".editDetails")
+    $(".editDetails-switch").click(function(){
+        $(".editOverlay-switch").css("display", "block");
+    })
+
+    let id;
+    let attr;
+    $(".editDetails").click(function(){
+        id = $("#keep-data").attr("data-keep");
+        let db = "db";
+        attr = $(this).attr("edit-Data");
+        let attrData
+        if (attr == "open_for_adoption") attrData = "adoption status";
+        else if (attr == "boys") attrData = "Number of Boys";
+        else if (attr == "girls") attrData = "Number of Girls";
+        else if (attr == "phone_number") attrData = "Phone Number";
+        else if (attr == "mission_statement") attrData = "Mission Statement";
+        else attrData = attr;
+        $("span[valueToEdit]").text(attrData);
+
+        switch (attr) {
+            case "name":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" type="text" class="form-control" />`);
+                break;
+            case "mission_statement":
+                $(".inputDiv").html(`<textarea id="editInput" value="" class="form-control">${$(this).attr(db)}</textarea>`);
+                break;
+            case "boys":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" type="text" class="form-control" />`);
+                break;
+            case "girls":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" class="form-control" />`);
+                break;
+            case "phone_number":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" class="form-control" />`);
+                break;
+            case "address":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" type="text" class="form-control" />`);
+                break;
+            case "website":
+                $(".inputDiv").html(`<input id="editInput" value="${$(this).attr(db)}" type="text" class="form-control" />`);
+                break;
+            default:
+                break;
+        }
+
+        $(".editOverlay").css("display", "block");
+    });
+
+    $("#submit").click(function(){
+        let value = $("#editInput").val();
+        $(".overlay_loader").css("display", "block");
+        let formdata = new FormData();
+        formdata.append("id", id);
+        formdata.append(attr, value);
+        formdata.append("column_name", attr);
+
+        console.log(value);
+        console.log(attr);
+        console.log(id);
+
+        fetch('update_data', {
+            method: 'POST',
+            body: formdata,
+        })
+        .then(res => res.json())
+        .then(res => window.location.reload())
+
+    })
+
+    $("#submit-switch").on('click', function(){
+        // alert("kkkkkkkkkkkkkkk");
+        // alert(getLocalStorage.admin);
+        id = $("#keep-data").attr("data-keep");
+            let status = $("#user").is(":checked") ? 1 : 0;
+            // alert(data_id)
+            let formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("open", status);
+
+            console.log(status);
+            console.log(id);
+
+            fetch('open_for_adoption', {
+                method: 'POST',
+                body: formdata,
+            })
+            .then((res) => res.json())
+            .then(res => {
+                console.log(status);
+                console.log(res);
+                if (res.verify == 1){
+                    $(this).prop('checked', 'true');
+                    console.log("Yesssss!");
+                    $("#text"+res.id).text("Verified");
+                }else{
+                    $(this).removeAttr('checked');
+                    $("#text"+res.id).text("Not Yet Verified");
+                }
+                window.location.reload();
+            });
+    })
+
+    $(".hideOverlay").click(function(){
+        $(".editOverlay, .editOverlay-switch").css("display", "none");
     })
 })
 

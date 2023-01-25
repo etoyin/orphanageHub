@@ -28,14 +28,49 @@ class Dashboard extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('encrypt');
 		$this->load->model('User_model');
+		// $this->load->model('Admin_Dashboard_model');
 		$this->load->database();
 	}
 
     public function index()
 	{
-        $this->load->helper('url');
-		$this->load->template('orphanage_dashboard', array('title' => 'Welcome'));
+		$id = $this->session->userdata('id');
+        $res = $this->User_model->getOneOrphanage($id);
+
+		$this->load->helper('url');
+		$this->load->template('orphanage_dashboard', array('title' => 'Your Orphanage', 'data' => $res));
 	}
+
+	public function open_for_adoption()
+	{
+		$open = $this->input->post('open');
+		$id = $this->input->post('id');
+		
+		$res = $this->User_model->open_for_adoption($id, $open);
+
+		echo json_encode($res);
+
+	}
+
+	public function update_data()
+	{
+		$column_name = $this->input->post('column_name');
+		$field_to_be_updated = $this->input->post($column_name);
+		$id = $this->input->post('id');
+		
+		$res = $this->User_model->update_data($id, $column_name, $field_to_be_updated);
+
+		echo json_encode($res);
+
+	}
+
+	// public function getOneOrphanage($id)
+	// {
+	// 	$res = $this->User_model->getOneOrphanage($id);
+
+	// 	$this->load->helper('url');
+	// 	$this->load->template('orphanage_details', array('title' => 'Children Homes', 'data' => $res));
+	// }
 
     function logout()
     {

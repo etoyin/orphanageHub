@@ -61,7 +61,7 @@ class Login extends CI_Controller {
 				// $data1['message'] = "Welcome!!";
 
 				// echo json_encode($data1);
-				redirect('Dashboard');
+				redirect('Dashboard/index');
 			}
 			else
 			{
