@@ -12,7 +12,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
 </head>
 <body>
 <div class="body">
@@ -32,9 +38,21 @@
         <div>
             <a href="all_orphanages_view">Verify Orphanages</a>
         </div>
-        <div>
-            <a href="#">Item</a>
+        <div class="d-flex justify-content-between" >
+            <div>
+                <a href="#">Blog</a>
+            </div>
+            <div class="text-light">
+                <a class="arrow-toggle"><i class="las la-angle-down"></i></a>
+            </div>
         </div>
+        <section class="blog-menu pl-3 text-light">
+            <ul class="list-group">
+                <a href="add_post_view"><li class="list-group-item bg-transparent">Write Post</li></a>
+                <a href="add_post_category"><li class="list-group-item bg-transparent">Create Categories</li></a>
+                <a href="#"><li class="list-group-item bg-transparent">View Posts</li></a>
+            </ul>
+        </section>
         <div>
             <a href="#">Item</a>
         </div>
@@ -56,9 +74,7 @@
                 </div>
             </div>
             <div class="content-right">
-                <div class="search-bar">
-                    <input type="text"><i class="fa fa-search"></i>
-                </div>
+                
                 <div class="plus-icon"><i class="las la-user-tie"></i></div>
             </div>
         </div>

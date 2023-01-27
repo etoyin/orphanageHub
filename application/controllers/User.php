@@ -161,17 +161,15 @@ class User extends CI_Controller {
 						}
 						$response['status'] = 1;
 						$response['message'] = 'Form Submitted Successfully';
-						echo json_encode($response);
+						// echo json_encode($response);
 					}
 					else{
 						$response['status'] = 0;
 						$response['message'] = 'Error in form Submission!';
-						echo json_encode($response);
+						// echo json_encode($response);
 					}
 
-				}
-
-				
+				}				
 			}
 			
 		}

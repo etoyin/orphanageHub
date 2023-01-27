@@ -239,6 +239,12 @@ nav > div > div > div > a{
 	z-index: 5;
 }
 
+.carousel-caption{
+	position: absolute !important;
+	background-color: #04f704;
+	top: 0;
+	left: 0;
+}
 
 /* ==============================================SWITCH====================================== */
 .switch {

@@ -1,25 +1,39 @@
         <main id="ad-section">
-            <div id="ad-container" class="bg-image vh-100 vw-100 shadow-1-strong position-relative">
-                <video id="ad-video" class="position-relative" autoplay muted loop>
-                    <source class="h-100" src="<?=base_url('public/images/video_2.mp4')?>" type="video/mp4" />
-                </video>
-                <div class="mask ml-auto" id="ad-content">
-                    <div class="d-flex align-items-center justify-content-center h-100">
-                        <div class="text-white">
-                            <h1 class="mb-3 mr-0">Save the Children</h1>
-                            <h5 class="mb-4 mr-0">Support a child today</h5>
-                            <a
-                                class="btn btn-outline-light btn-lg m-2"
-                                href="#"
-                                role="button"
-                                rel="nofollow"
-                                >Donate</a
-                            >
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner m-auto">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Hello</h5>
+                            <p>Yes</p>
                         </div>
+                        <img class="d-block w-100" src="<?=base_url('public/images/blog-display.png')?>" alt="First slide">
+                        
+                    </div>
+                    <div class="carousel-item">
+                    <img class="d-block h-100 w-100" src="<?=base_url('public/images/3-children.jpg')?>" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                    <img class="d-block h-100 w-100" src="<?=base_url('public/images/hungry-kid.jpg')?>" alt="Third slide">
                     </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
+        
         </main>
+        
+
         <section>
             <div class="about">
                 <div class="row">
@@ -40,7 +54,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <!-- <section>
             <div class="impact w-75 ml-auto mr-auto">
                 <div class="w-100 h-100 ml-auto mr-auto p-5">
                     <div class="header mt-5 mb-5 text-center">Our <span>National</span> impact</div>
@@ -68,8 +82,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <article>
+        </section> -->
+        <!-- <article>
             <div class="blog p-5">
                 <div>
                     <div class="blog-header text-center">our blog</div>
@@ -117,7 +131,7 @@
                     <div class="text-center view-more-blog-posts">View More</div>
                 </div>
             </div>
-        </article>
+        </article> -->
         <div class="p-5" style="background-color: #e2dfdf;">
             <div class="contact w-50 mr-auto ml-auto">
                 <div class="contact-header text-center">Contact Us</div>

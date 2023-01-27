@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- <link rel="stylesheet" type="text/css" href="<?=base_url('public/libs/bootstrap/css/bootstrap.min.css')?>" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+    
     <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/registration_form.css')?>" />
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -46,7 +47,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto links">
-                        <a data="home" class="nav-item nav-link ml-5 active" href="<?=base_url('Home/index')?>">Home <span class="sr-only">(current)</span></a>
+                        <?php
+                            if ($this->session->userdata('id'))
+                            {
+                                echo '<a data="home" class="nav-item nav-link ml-5 active" href="'.base_url('Dashboard/index').'">Dashboard <span class="sr-only">(current)</span></a>';
+                            }
+                            else{
+                                echo '<a data="home" class="nav-item nav-link ml-5 active" href="'.base_url('Home/index').'">Home <span class="sr-only">(current)</span></a>';
+                            }
+                        ?>
+                        
+                        
                         <a data="about" class="nav-item nav-link ml-5 active" href="<?=base_url('About')?>">About Us</a>
                         <a data="orphanages" class="nav-item nav-link ml-5 active" href="<?=base_url('Children_Homes/index')?>">Orphanages</a>
                         <a data="blog" class="nav-item nav-link ml-5 active" href="#">Blog</a>

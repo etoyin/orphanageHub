@@ -18,7 +18,6 @@
                     
                         foreach($data['all_data'] as $key=>$row)
                         {
-                            // ''
                             echo '<a href="getOneOrphanage/'.$row->id.'">';
                             echo '<div class="card mb-3 mr-3" style="width: 18rem;">';
                             echo '<img src="'.base_url("uploads/".$row->email.'/'.$row->cover_photo).'" class="card-img-top" title="Orphanage Image" alt="Orphanage Image">';

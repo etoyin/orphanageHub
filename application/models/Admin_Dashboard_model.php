@@ -117,5 +117,58 @@
                 return 'Invalid';
             }
         }
+
+
+
+        function cat_exists($data){
+            $this->db->where('cat_name',$data);
+            $query = $this->db->get('categories');
+            if ($query->num_rows() > 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+
+        public function insert_category($data, $pin)
+        {
+            $adminId = $this->session->userdata('adminId');
+
+            $this->db->where('id', $adminId);
+            $query = $this->db->get('admin');
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $row)
+                {
+                    $store_pin = $this->encrypt->decode($row->pin);
+                    if($pin == $store_pin && $row->type)
+                    {
+                        if ($this->cat_exists($data['cat_name'])){
+                            return 'Category Already Exists, Enter another!';
+                        }
+                        else{
+                            $this->db->insert('categories', $data);
+                        }
+                    }
+                    else
+                    {
+                        return "You're not authorized to do this!";
+                    }
+                }
+            }
+            else
+            {
+                return 'Invalid';
+            }
+        }
+
+
+
+
+
+        
     }
 ?>

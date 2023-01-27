@@ -49,6 +49,15 @@
             return array("all_data" => $result);
         }
 
+        public function getUnVerifiedOrphanage()
+        {
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+                                            verified, mission_statement, address, boys, girls, owner, 
+                                            location, cover_photo FROM orphanages_users WHERE verified = 0");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
         public function email_exists($data){
             $this->db->where('email',$data);
             $query = $this->db->get('orphanages_users');

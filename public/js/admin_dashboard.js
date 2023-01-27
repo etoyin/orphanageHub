@@ -21,6 +21,7 @@ $(document).ready(function(){
     let cpwd = false;
     let username;
     let password;
+    let cat_name;
 
     $("#admin_submit_admin").click(function(){
         username = $("#username").val();
@@ -57,8 +58,38 @@ $(document).ready(function(){
 
     })
 
+    ///////////////////////////////////////AD CATEGORY/////////////////////////////////////////////////////
+    $("#add_cat").click(function(){
+        cat_name = $("#cat_name").val();
+        if(cat_name.length <= 2){
+            $(".cat_error").css("display", "block");
+            un = false;
+        }
+        else{
+            $(".cat_error").css("display", "none");
+            un = true;
+        }
+        if(un){
+            $(".overlay-pin").css("display", "block");
+        }
 
+    })
     
+
+    $("#submit_cat").click(function(e){
+        e.preventDefault()
+        let pin = $("#pin").val();
+
+        if(pin.length < 4){
+            $(".pin_error").css("display", "block");
+        }else{
+            $(".pin_error").css("display", "none");
+            $("#add_cat_form").submit();
+        }
+    })
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     $(".delete").click(function(){
         $(".overlay-pin").css("display", "block");
         checkboxValue = $("input:checked").val();
@@ -91,6 +122,18 @@ $(document).ready(function(){
             })
             // $("#delete_admin_").attr("action", `delete_admin/${pin}/${checkboxValue}`).submit();
         }
+    });
+    let hide = true;
+
+    $(".arrow-toggle").click(function(){
+        hide = !hide;
+        if(!hide){
+            $(this).html(`<i class="las la-angle-up"></i>`)
+        }
+        else{
+            $(this).html(`<i class="las la-angle-down"></i>`)
+        }
+        $(".blog-menu").toggle(1000);
     })
 
 })

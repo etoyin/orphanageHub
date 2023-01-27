@@ -8,7 +8,7 @@
     </div>
 
 
-    <section id="" class="editOverlay-switch pt-5">
+    <div class="editOverlay-switch pt-5">
         <div class="card mt-5 ml-auto mr-auto w-25">
             <span class="">
                     <p class="text-right hideOverlay"  style="cursor: pointer">
@@ -17,16 +17,15 @@
                 </span>
             <p class="errorClass"></p>
             <p class="text-center" style="color: #aaa">Edit <span valueToEdit></span> </p>
-            <div class="inputDiv">
+            <div class="inputDv">
                 <input type="checkbox" data-id="" <?=($data[0]->open_for_adoption ? "checked" : "")?> hidden="hidden" id="user">
                 <label class="switch m-auto" for="user"></label><span id="text" class="ml-3 card-text"></span>
             </div>
-            <div class="switch-button"></div>
             <button id="submit-switch" class="btn btn-primary" >
                 Make Changes
             </button>
         </div>
-    </section>
+</div>
 
     
 
@@ -42,7 +41,6 @@
             <div class="inputDiv">
 
             </div>
-            <div class="switch-button"></div>
             <button id="submit" class="btn btn-primary" >
                 Make Changes
             </button>

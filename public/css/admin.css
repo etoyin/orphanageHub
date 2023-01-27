@@ -166,7 +166,7 @@ body{
     font-size: 10px;
     color: red;
 }
-.password_error, .username_error, .confirm_password_error, .pin_error{
+.password_error, .username_error, .confirm_password_error, .pin_error, .cat_error{
     display: none;
 }
 .delete > input[type=checkbox]{
@@ -176,6 +176,24 @@ body{
     font-size: 25px;
     color: red;
     cursor: pointer;
+}
+.blog-menu{
+    display: none;
+}
+.arrow-toggle{
+    cursor: pointer;
+}
+.blog-menu > ul > a > li:hover{
+    background-color: #157CB0 !important;
+    cursor: pointer;
+}
+.list-group > a{
+    padding: 0px;
+    font-size: 12px;
+    text-decoration: none;
+}
+#editorjs{
+    border: 1px solid grey;
 }
 
 

@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		if(!$this->session->userdata('id'))
+		if(!($this->session->userdata('id') || $this->session->userdata('adminId')))
 		{
 			redirect('index.php/Login');
 		}
@@ -32,9 +32,16 @@ class Dashboard extends CI_Controller {
 		$this->load->database();
 	}
 
-    public function index()
+    public function index($idA="")
 	{
-		$id = $this->session->userdata('id');
+		if($this->session->userdata('adminId'))
+		{
+			$id = $idA;
+		}
+		else{
+			$id = $this->session->userdata('id');
+		}
+		
         $res = $this->User_model->getOneOrphanage($id);
 
 		$this->load->helper('url');

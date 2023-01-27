@@ -34,14 +34,14 @@
     </main>
     <section>
         <div>
-            <form id="regForm" >
+            <form id="regForm">
                 <h3>Register:</h3>
                 <?php
                 if($this->session->flashdata('message'))
                     {
                         echo '
                         <div class="alert alert-success">
-                            '.$this->session->flashdata("message").'
+                            '.json_encode($this->session->flashdata("message")).'
                         </div>
                         ';
                     }

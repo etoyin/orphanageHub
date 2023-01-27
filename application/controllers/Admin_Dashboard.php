@@ -33,13 +33,25 @@ class Admin_Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
+		$unVer = $this->User_model->getUnVerifiedOrphanage();
+		$ver = $this->User_model->getVerifiedOrphanage();
         $this->load->helper('url');
-		$this->load->admin_template('admin_view/admin_dashboard', array('title' => 'Admin Dashboard'));
+		$this->load->admin_template('admin_view/admin_dashboard', array('title' => 'Admin Dashboard', 'ver'  => $ver, 'unVer' => $unVer));
 	}
 
 	public function add_admin_view()
 	{
 		$this->load->admin_template('admin_view/add_admin_view', array('title' => 'Register An Admin'));
+	}
+
+	public function add_post_category()
+	{
+		$this->load->admin_template('admin_view/add_category', array('title' => 'Add a Blog Post Category'));
+	}
+
+	public function add_post_view()
+	{
+		$this->load->admin_template('admin_view/post_blog', array('title' => 'Post'));
 	}
 
 	public function all_admin_view()
@@ -98,6 +110,44 @@ class Admin_Dashboard extends CI_Controller {
 				// echo json_encode($data1);
 				$this->session->set_flashdata('message',$data1);
 				redirect('Admin_Dashboard/add_admin_view');
+			}
+		}
+	}
+
+
+
+
+	public function add_cat()
+	{
+		$this->form_validation->set_rules('cat_name', 'Category Name', 'required|min_length[2]|max_length[50]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['response'] = 'failed';
+			$data['message']  = validation_errors();
+			echo json_encode($data);
+		}
+		else {
+   			$pin = $this->input->post('pin');
+			$data = array(
+				'cat_name' => $this->input->post('cat_name')
+			);
+			$res = $this->Admin_Dashboard_model->insert_category($data, $pin);
+			
+			if($res == '')
+			{
+				$data1['status'] = 1;
+				$data1['message'] = "Category Added Successfully";
+				// echo json_encode($data1);
+				$this->session->set_flashdata('message',$data1);
+				redirect('Admin_Dashboard/add_post_category');
+			}
+			else
+			{
+				$data1['status'] = 0;
+				$data1['message'] = $res;
+				// echo json_encode($data1);
+				$this->session->set_flashdata('message',$data1);
+				redirect('Admin_Dashboard/add_post_category');
 			}
 		}
 	}
