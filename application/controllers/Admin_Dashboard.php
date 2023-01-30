@@ -51,7 +51,8 @@ class Admin_Dashboard extends CI_Controller {
 
 	public function add_post_view()
 	{
-		$this->load->admin_template('admin_view/post_blog', array('title' => 'Post'));
+		$categories = $this->Admin_Dashboard_model->getCat();
+		$this->load->admin_template('admin_view/post_blog', array('title' => 'Post blog', 'categories' => $categories));
 	}
 
 	public function all_admin_view()
@@ -63,6 +64,132 @@ class Admin_Dashboard extends CI_Controller {
 	{
 		$res = $this->User_model->getAllOrphanage();
 		$this->load->admin_template('admin_view/all_orphanages_view', array('title' => 'All Orphanages', 'data' => $res));
+	}
+
+	public function blog_images_upload()
+	{
+		$accepted_origins = array("http://localhost", "http://192.168.1.1", "https://theorphanagehub.com");
+
+		/*********************************************
+		 * Change this line to set the upload folder *
+		 *********************************************/
+		$imageFolder = "uploads/blog_images/";
+
+		if (isset($_SERVER['HTTP_ORIGIN'])) {
+			// same-origin requests won't set an origin. If the origin is set, it must be valid.
+			if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
+			header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+			} else {
+			header("HTTP/1.1 403 Origin Denied");
+			return;
+			}
+		}
+
+		// Don't attempt to process the upload on an OPTIONS request
+		if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+			header("Access-Control-Allow-Methods: POST, OPTIONS");
+			return;
+		}
+
+		reset ($_FILES);
+		$temp = current($_FILES);
+		if (is_uploaded_file($temp['tmp_name'])){
+			/*
+			If your script needs to receive cookies, set images_upload_credentials : true in
+			the configuration and enable the following two headers.
+			*/
+			// header('Access-Control-Allow-Credentials: true');
+			// header('P3P: CP="There is no P3P policy."');
+
+			// Sanitize input
+			if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+				header("HTTP/1.1 400 Invalid file name.");
+				return;
+			}
+
+			// Verify extension
+			if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png", "jpeg"))) {
+				header("HTTP/1.1 400 Invalid extension.");
+				return;
+			}
+
+			// Accept upload if there was no origin, or if it is an accepted origin
+			$filetowrite = $imageFolder . $temp['name'];
+			move_uploaded_file($temp['tmp_name'], $filetowrite);
+
+			// Determine the base URL
+			$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
+			$baseurl = base_url($filetowrite);
+
+			// Respond to the successful upload with JSON.
+			// Use a location key to specify the path to the saved image resource.
+			// { location : '/your/uploaded/image/file'}
+			echo json_encode(array('location' => $baseurl));
+		} else {
+			// Notify editor that the upload failed
+			header("HTTP/1.1 500 Server Error");
+		}
+	}
+
+	public function post_blog_to_db()
+	{
+		$this->form_validation->set_rules('category', 'Category Name', 'required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('title', 'Title', 'required|min_length[2]|max_length[50]');
+		// $this->form_validation->set_rules('', 'Category Name', 'required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('post_content', 'Post', 'required|min_length[10]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['response'] = 'failed';
+			$data['message']  = validation_errors();
+			echo json_encode($data);
+		}
+		else {
+   			$pin = $this->input->post('pin');
+			$data = array(
+				'category' => $this->input->post('category'),
+				'blog_post' => $this->input->post('post_content'),
+				'title' => $this->input->post('title')
+			);			
+
+
+			$config['upload_path'] = "./uploads/featured_images";
+			$config['allowed_types'] = 'gif|jpeg|jpg|png';
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('featured_image'))
+			{
+				$error = array('error' => $this->upload->display_errors());
+				echo json_encode($error);
+				// $this->session->set_flashdata('message',$error);
+				// redirect('Admin_Dashboard/add_post_view');
+
+			}
+			else
+			{
+				$uploadedData = array('upload_data' => $this->upload->data());
+				$data['featured_image'] = $uploadedData["upload_data"]["file_name"];
+
+				// echo json_encode($uploadedData);
+
+				$res = $this->Admin_Dashboard_model->insert_blog_post($data, $pin);
+				if($res == '')
+				{
+					$data1['status'] = 1;
+					$data1['message'] = "Blog Posted Successfully";
+					echo json_encode($data1);
+					// $this->session->set_flashdata('message',$data1);
+					// redirect('Admin_Dashboard/add_post_view');
+				}
+				else
+				{
+					$data1['status'] = 0;
+					$data1['message'] = $res;
+					echo json_encode($data1);
+					// $this->session->set_flashdata('message',$data1);
+					// redirect('Admin_Dashboard/add_post_view');
+				}
+
+			}
+		}
 	}
 
 	public function verify_orphanage()

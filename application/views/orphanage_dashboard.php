@@ -58,8 +58,8 @@
                     <i class="las la-user-edit"></i>
                 </span>
             </div>
-            <div class="row">
-                <div class="col-md overview pt-1 text-justify">
+            <div class="d-flex flex-wrap">
+                <div class="details-overview overview pt-1 text-justify">
                     <div class="d-flex">
                         <h4 class="font-weight-bold">Overview | Mission Statement</h4>
                         <span db="<?=$data[0]->mission_statement?>" class="editDetails" id="mission_statementBtn" edit-Data="mission_statement">
@@ -153,7 +153,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="details-overview">
                     <div class="card-div">
                         <div class="w-50 w-md-75 w-sm-100 shadow-inner card bg-white rounded m-auto p-3 h-50">
                             <div class="d-flex adoption-info">

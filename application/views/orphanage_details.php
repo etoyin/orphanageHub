@@ -5,8 +5,8 @@
             <div class="orphanage_name">
                 <h2 class="font-weight-bold"><?=$data[0]->name?></h2>
             </div>
-            <div class="row">
-                <div class="col-md overview pt-1 text-justify">
+            <div class="d-flex flex-wrap">
+                <div class="details-overview overview pt-1 text-justify">
                     <h4 class="font-weight-bold">Overview | Mission Statement</h4>
                     <hr/>
                     <p class="mt-3">
@@ -42,7 +42,7 @@
                                 <div class="col-md-1">
                                     <i class="las la-envelope"></i>
                                 </div>
-                                <div class="col-md-11 border-left">
+                                <div class="text-wrap col-md-11 border-left">
                                     <?=$data[0]->email?>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
 
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="details-overview">
                     <div class="card-div">
                         <div class="w-50 w-md-75 w-sm-100 shadow-inner card bg-white rounded m-auto p-3 h-50">
                             <div class="d-flex adoption-info">

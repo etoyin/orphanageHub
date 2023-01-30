@@ -132,6 +132,42 @@
         }
 
 
+        public function getCat()
+        {
+            $query = $this->db->query("SELECT * FROM categories");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
+
+        public function insert_blog_post($data, $pin)
+        {
+            $adminId = $this->session->userdata('adminId');
+
+            $this->db->where('id', $adminId);
+            $query = $this->db->get('admin');
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $row)
+                {
+                    $store_pin = $this->encrypt->decode($row->pin);
+                    if($pin == $store_pin && $row->type)
+                    {
+                        $this->db->insert('blog_table', $data);
+                    }
+                    else
+                    {
+                        return "You're not authorized to post blog!";
+                    }
+                }
+            }
+            else
+            {
+                return 'Invalid';
+            }
+        }
+
         public function insert_category($data, $pin)
         {
             $adminId = $this->session->userdata('adminId');

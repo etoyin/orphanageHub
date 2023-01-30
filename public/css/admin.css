@@ -63,9 +63,6 @@ body{
 }
 .close-add-admin{
     /* display: none; */
-    position: relative;
-    top: -50px;
-    right: -250px;
     cursor: pointer;
     color: #f1f1f1;
 }
@@ -161,12 +158,16 @@ body{
     height: 100vh;
     background-color: #0606295b;
     padding: 0;
+    z-index: 5;
 }
 .error{
     font-size: 10px;
     color: red;
 }
-.password_error, .username_error, .confirm_password_error, .pin_error, .cat_error{
+.password_error, .username_error, 
+.confirm_password_error, .pin_error, 
+.cat_error, .cat-error, .text-error,
+.image-error, .title-error{
     display: none;
 }
 .delete > input[type=checkbox]{
@@ -234,6 +235,96 @@ body{
     box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(0,150,136,0.2);
   }
 
+
+
+
+  /* ==================================================================================== */
+
+
+  
+.overlay_upload_images{
+    height: 100%;
+    width: 100%;
+    /* display: none; */
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.overlay_upload_content{
+    position: relative;
+    top: 25%;
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 30px;
+    margin: auto;
+    background-color: #fff;
+}
+.uploadFlexContainer{
+    justify-content: center;
+    padding: 0px;
+    width: 80%;
+    /* margin: auto; */
+  }
+  /* .uploadFlexContainer > div {
+    background-color: #fff;
+    text-align: center;
+    line-height: 75px;
+    padding: 20px;
+  } */
+  .drop-zone{
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 0px #888888;
+    /* width: 200px; */
+    margin-top: 10px;
+    height: 300px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    border: 4px dashed #ddd;
+  }
+  .drop-zone--over{
+    border-style: solid ;
+  }
+  .drop-zone__input{
+    display: none;
+  }
+  .drop-zone__thumb{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #dddddd;
+    background-size: cover;
+    position: relative;
+  }
+  .drop-zone__thumb::after{
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+
+
+  /* ====================================================================================== */
+
   /* ================================================================================== */
 @media screen and (max-width: 750px) {
     .closebtn{
@@ -248,5 +339,15 @@ body{
     .calendar-card{
         width: 100%
     }
+    .overlay-pin > div{
+        width: 50% !important;
+    }
     
+}
+
+
+@media screen and (max-width: 500px) {
+    .overlay-pin > div{
+        width: 100% !important;
+    }
 }

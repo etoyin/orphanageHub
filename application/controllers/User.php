@@ -41,28 +41,28 @@ class User extends CI_Controller {
 		$this->load->template('register', array('title' => 'Register'));
 	}
 
-	public function doUpload()
-	{
+	// public function doUpload()
+	// {
 		
-		$config['upload_path'] = "./uploads/";
-		$config['allowed_types'] = 'gif|jpeg|jpg|png';
-		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('image'))
-		{
-			$error = array('error' => $this->upload->display_errors());
-			echo json_encode($error);
-			// redirect('User/register');
+	// 	$config['upload_path'] = "./uploads/";
+	// 	$config['allowed_types'] = 'gif|jpeg|jpg|png';
+	// 	$this->load->library('upload', $config);
+	// 	if (!$this->upload->do_upload('image'))
+	// 	{
+	// 		$error = array('error' => $this->upload->display_errors());
+	// 		echo json_encode($error);
+	// 		// redirect('User/register');
 
-		}
-		else
-		{
-			$uploadedData = array('upload_data' => $this->upload->data());
-			// $data['cover_photo'] = $uploadedData['file_name'];
+	// 	}
+	// 	else
+	// 	{
+	// 		$uploadedData = array('upload_data' => $this->upload->data());
+	// 		// $data['cover_photo'] = $uploadedData['file_name'];
 
-			echo json_encode($uploadedData);
+	// 		echo json_encode($uploadedData);
 
-		}
-	}
+	// 	}
+	// }
 
 	public function regSubmit()
 	{
@@ -90,7 +90,7 @@ class User extends CI_Controller {
 				'address' => $this->input->post('address'),
 				'password' => $encrypted_password,
 				'owner' => $this->input->post('owner'),
-				// 'email_verified' => 1,
+				'email_verified' => 1,
 				'verification_key' => $verification_key
 			);
 
