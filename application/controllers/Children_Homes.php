@@ -27,8 +27,13 @@ class Children_Homes extends CI_Controller {
 
 	public function index()
 	{
-		$res = $this->User_model->getVerifiedOrphanage();
-
+		if(!$this->input->get('country'))
+		{
+			$res = $this->User_model->getVerifiedOrphanage();
+		}
+		else {
+			$res = $this->User_model->getVerifiedOrphanageByCountry($this->input->get('country'));
+		}
         $this->load->helper('url');
 		$this->load->template('children_homes', array('title' => 'Children Homes', 'data' => $res));
 	}

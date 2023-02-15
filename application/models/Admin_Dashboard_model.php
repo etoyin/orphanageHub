@@ -139,6 +139,26 @@
             return array("all_data" => $result);
         }
 
+        public function getAllBlog()
+        {
+            $query = $this->db->query("SELECT * FROM blog_table");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+        public function getByCat($cat_name)
+        {
+            $query = $this->db->query("SELECT * FROM blog_table WHERE category=\"$cat_name\"");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
+        public function getById($id)
+        {
+            $query = $this->db->query("SELECT * FROM blog_table WHERE id=\"$id\"");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
 
         public function insert_blog_post($data, $pin)
         {

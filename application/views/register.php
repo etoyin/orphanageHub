@@ -34,7 +34,7 @@
     </main>
     <section>
         <div>
-            <form id="regForm">
+            <form id="regForm" action="<?=base_url('User/regSubmit')?>" method="post" enctype="multipart/form-data">
                 <h3>Register:</h3>
                 <?php
                 if($this->session->flashdata('message'))
@@ -52,12 +52,17 @@
                     <p><input class="input required" id="name" errorField="name" placeholder="Name of Orphanage..." name="orphanage"></p>
                     <p class="errorField" errorField="owner">Enter Name of Owner</p>
                     <p><input class="input required" id="owner" errorField="owner" placeholder="Name(s) of Owner(s)..." type="text" name="owner"></p>
-                </div>
-                <div class="tab">Contact Info:
                     <p class="errorField" errorField="phone">Enter Phone Number</p>
                     <p><input class="input required" id="phone" errorField="phone" placeholder="Phone Number..." name="phone"></p>
-                    <p class="errorField" errorField="address">Enter Phone Number</p>
+                    <p class="errorField" errorField="address">Enter Address</p>
                     <p><input class="input required" id="address" errorField="address" placeholder="Address..." name="address"></p>
+                    <p class="errorField" errorField="country">Enter country</p>
+                    <p>
+                        <select class="input required" id="country" errorField="country" name="country">
+                            <option value="">Select an Africa Country</option>
+                        </select>
+                    
+                    </p>
                 </div>
                 <div class="tab">Upload orphanage cover image:                  
                     <div class="overlay_upload_content">

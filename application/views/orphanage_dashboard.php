@@ -120,6 +120,14 @@
                             </div>
                             <div class="row mb-4">
                                 <div class="col-md-1">
+                                    <i class="las la-location-arrow"></i>
+                                </div>
+                                <div class="col-md-11 border-left">
+                                <?=$data[0]->country?>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-1">
                                     <i class="las la-envelope"></i>
                                 </div>
                                 <div class="col-md-11 border-left">

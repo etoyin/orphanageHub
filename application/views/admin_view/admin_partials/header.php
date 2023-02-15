@@ -28,7 +28,7 @@
         <div class="closebtn"><i class="las la-window-close"></i></div>
         <div style="background-color: #060629">
             <a class="navbar-brand" style="height: 100%" href="<?=base_url('Admin_Dashboard/index')?>">
-                <img id="logo" height="100%" width="100%" src="<?=base_url('public/images/orphanage-crop-navyblue-bg.png')?>" alt="">
+                <img id="logo" height="100%" width="100%" src="<?=base_url('public/images/logo1.png')?>" alt="">
             </a>
         </div>
         <div>
@@ -52,7 +52,7 @@
             <ul class="list-group">
                 <a href="add_post_view"><li class="list-group-item bg-transparent">Write Post</li></a>
                 <a href="add_post_category"><li class="list-group-item bg-transparent">Create Categories</li></a>
-                <a href="#"><li class="list-group-item bg-transparent">View Posts</li></a>
+                <a href="<?=base_url('Blog/index')?>"><li class="list-group-item bg-transparent">View Posts</li></a>
             </ul>
         </section>
         <div>

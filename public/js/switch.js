@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     $(".orphanage_verify_container").find("input[type='checkbox']").each(function(i){
         $(this).on('change', function(){
-            // alert();
+            // alert("kkikikkk");
             let data_id = $(this).attr("data-id");
             // alert(getLocalStorage.admin);
                 let status = $(this).is(":checked") ? 1 : 0;

@@ -6,7 +6,6 @@
             {
                 // echo '<h1>jjfjdjdj</h1>';
                 $message = $this->session->flashdata("message");
-                echo json_encode($message['message']);
                 if ($message['status'] == 1){
                     echo '
                     <div class="alert alert-success">
@@ -65,7 +64,8 @@
             <div class="w-25 m-auto p-2 mt-5 bg-light">
                 <p class="close-add-admin" ><i style="color: grey" class="las la-window-close text-dark"></i></p>
                 <p class="pin_error error">Pin must be 4 characters</p>
-                <p><input class="form-control" id="pin" placeholder="Enter Authorized Pin..." errorField="pin" name="pin" type="password"></p>
+                <label for="pin">Enter Authorized Pin</label>
+                <p><input class="form-control" id="pin"  errorField="pin" name="pin" type="password"></p>
                 <button id="submit_blog_post" class="btn btn-primary" >Submit</button>
             </div>
         </div>

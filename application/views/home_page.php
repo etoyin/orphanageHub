@@ -3,10 +3,9 @@
                 <div>
                     <div class="owl-text-overlay hidden-xs pt-5">
                         <div class="w-75 m-auto">
-                            <h2 class="welcome">Welcome!!!</h2>
-                            <h2 class="owl-title ">This is the Orphanage Hub</h2>
+                            <h2 class="owl-title ">Welcome to the Orphanage Hub</h2>
                             <p class="h3"><em> Every child is a blessing</em></p>
-                            <a href="#about"><button class="btn btn-primary">Learn More</button></a>
+                            <a href="#about"><button class="learn-more btn btn-sm btn-primary">Learn More</button></a>
                         </div>
                     </div>
                     <img class="owl-img" src="<?=base_url('public/images/3-children.jpg')?>">
@@ -14,10 +13,9 @@
                 <div>
                     <div class="owl-text-overlay hidden-xs pt-5">
                         <div class="w-75 m-auto">
-                            <h2 class="welcome">Welcome!!!</h2>
                             <h2 class="owl-title ">A Voice for Children</h2>
                             <p class="h3"><em> Every child is a blessing</em></p>
-                            <a href="#about"><button class="btn btn-primary">Learn More</button></a>
+                            <a href="#about"><button class="btn btn-sm learn-more btn-primary">Learn More</button></a>
                         </div>
                     </div>
                     <img class="owl-img" src="<?=base_url('public/images/caro1.jpg')?>">
@@ -25,10 +23,9 @@
                 <div>
                     <div class="owl-text-overlay hidden-xs pt-5">
                         <div class="w-75 m-auto">
-                            <h2 class="welcome">Welcome!!!</h2>
                             <h2 class="owl-title ">A Place of Love</h2>
                             <p class="h3"><em> Every child is a blessing</em></p>
-                            <a href="#about"><button class="btn btn-primary">Learn More</button></a>
+                            <a href="#about"><button class="btn btn-sm btn-primary learn-more">Learn More</button></a>
                         </div>
                     </div>
                     <img class="owl-img" src="<?=base_url('public/images/caro2.jpg')?>">
@@ -40,31 +37,29 @@
 
         <section id="about">
             <div class="about">
-                <div class="d-flex flex-wrap m-auto" style="background-color: blue">
-                    <div class="about m-auto" style="background-color: red">
-                        <div class="header text-center">
+                <div class="d-flex flex-wrap m-auto" >
+                    <div class="about p-4 m-auto" >
+                        <div class="hidden header text-center">
                             our Vision
                         </div>
-                        <div class="body h5 text-center">
+                        <div class=" hidden body h5 text-center">
                           <p>
-                            We have a budden to care for all children
+                            To care for all children
                           </p>
                         </div>
-                        <div class="header text-center">
+                        <div class="header hidden text-center">
                             our Mission
                         </div>
-                        <div class="body h5">
+                        <div class="body h5 hidden">
                           <p>
-                            <ul>
-                                <li>To make orphanage and care homes easily accessible</li>
-                                <li>To facilitate fostering and adoption in Nigeria</li>
-                                <li>To meet the needs of the less privileged children</li>
-                                <li>To be a voice for children</li>
-                            </ul>
+                                <p>To make orphanage and care homes easily accessible</p>
+                                <p>To facilitate fostering and adoption</p>
+                                <p>To meet the needs of the less privileged children</p>
+                                <p>To be a voice for children</p>
                           </p>
                         </div>
                     </div>
-                    <div class="about-img p-5 m-auto" >
+                    <div class="about-img p-5 m-auto hidden" >
                         <img width="100%" src="<?=base_url('public/images/3-children.jpg')?>" class="m-auto" alt="A Child">
                     </div>
                 </div>
@@ -99,6 +94,43 @@
                 </div>
             </div>
         </section> -->
+        <section style="border-top: 1px solid #bbb" class="blog-section">
+            <h2 class="text-center font-weight-bold mt-3 hidden">Our Blog</h2>
+            <div class="view_body ml-5 mr-5 d-flex">
+                <?php 
+                    // echo json_encode($blog['all_data']);
+
+                    if (!$blog['all_data'] || !count($blog['all_data'])){
+                        echo "<div class=\"w-100 alert hidden alert-warning\" role=\"alert\">
+                            <i class=\"las la-exclamation-triangle\"></i> No Blog Record found!!!
+                            </div>";
+                    }else{
+                        $limit = count($blog['all_data']) > 3 ? 3 : count($blog['all_data']);
+                    
+                        for($key = 0; $key < $limit; $key++)
+                        {
+                            echo '';
+                            echo '<div class="card mb-3 mr-3 hidden" style="width: 18rem;">';
+                            echo '<img src="'.base_url("uploads/featured_images/".$blog['all_data'][$key]->featured_image).'" class="card-img-top" title="Orphanage Image" alt="Orphanage Image">';
+                            echo '<div class="card-body">';
+                            echo '<h4 class="card-title">'.$blog['all_data'][$key]->title.'</h4>';
+                            // echo '<p class="card-text">'.$row.'</p>';
+                            // echo '<input type="checkbox" data-id="'.$row->id.'" '.(($row->verified == '1')? "checked" : "").' hidden="hidden" id="user'.$row->id.'">';
+                            echo '<div class="each_cat mr-5"><a href="#">'.$blog['all_data'][$key]->category.'</a></div>';
+                            echo '<a class="" href="'.base_url("Blog/get_blog_detail/?id=".$blog["all_data"][$key]->id).'"><button class="mt-3 btn btn-primary"> Read More</button></a>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    }
+
+                ?>
+            </div>
+            <div class="text-center view-more-blog-posts mb-3 hidden">
+                <a href="<?=base_url('Blog/index')?>" style="text-decoration: none; color: #444"> 
+                    View More
+                </a>
+            </div>
+        </section>
         <!-- <article>
             <div class="blog p-5">
                 <div>
@@ -150,11 +182,17 @@
         </article> -->
         <div class="p-5" style="background-color: #e2dfdf;">
             <div class="contact w-50 mr-auto ml-auto">
-                <div class="contact-header text-center">Contact Us</div>
-                <input class="form-control mt-3" type="text" placeholder="Email"/>
-                <textarea rows="10" class="form-control mb-1"></textarea>
-                <div class="text-center">
-                    <button class="btn ">Submit</button>
+                <div class="contact-header text-center hidden">Contact Us</div>
+                <div class="alert alert-e"></div>
+                <div class="errorField errorGen">Fill the form to submit!!!</div>
+                <p class="errorField" id="nameError">Please input your name</p>
+                <input class="form-control input-email hidden mt-3" data-hold="nameError" type="text" id="name" name="name" placeholder="Your Name"/>
+                <p class="errorField" id="subjectError">Please add the subject matter</p>
+                <input class="form-control input-email hidden" type="text" data-hold="subjectError" name="subject" id="subject" placeholder="Subject"/>
+                <p class="errorField" id="contentError">Please add a comment</p>
+                <textarea rows="10" id="content" data-hold="contentError" class="form-control hidden input-email mb-1"></textarea>
+                <div class="">
+                    <button id="submit-email" class="justify-content-center btn btn-block d-flex hidden"><i class="mt-1 mr-2 las la-spinner"></i> Submit</button>
                 </div>
             </div>
         </div>

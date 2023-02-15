@@ -14,8 +14,17 @@
         public function getAllOrphanage()
         {
             $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
-                                            verified, mission_statement, address, boys, girls, owner, 
+                                            verified, mission_statement, country, address, boys, girls, owner, 
                                             location, cover_photo FROM orphanages_users");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
+        public function getAllOrphanageByCountry($country)
+        {
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+                                            verified, mission_statement, country, address, boys, girls, owner, 
+                                            location, cover_photo FROM orphanages_users WHERE country = \"$country\"");
             $result=$query->result();
             return array("all_data" => $result);
         }
@@ -40,9 +49,17 @@
             return $result;
         }
 
+        public function getVerifiedOrphanageByCountry($country)
+        {
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, country, phone_number, open_for_adoption, 
+                                            verified, mission_statement, address, boys, girls, owner, 
+                                            location, cover_photo FROM orphanages_users WHERE (verified = 1 AND country = \"$country\")");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
         public function getVerifiedOrphanage()
         {
-            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, country, phone_number, open_for_adoption, 
                                             verified, mission_statement, address, boys, girls, owner, 
                                             location, cover_photo FROM orphanages_users WHERE verified = 1");
             $result=$query->result();
@@ -51,7 +68,7 @@
 
         public function getUnVerifiedOrphanage()
         {
-            $query = $this->db->query("SELECT orphanages_users.id, name, email, phone_number, open_for_adoption, 
+            $query = $this->db->query("SELECT orphanages_users.id, name, email, country, phone_number, open_for_adoption, 
                                             verified, mission_statement, address, boys, girls, owner, 
                                             location, cover_photo FROM orphanages_users WHERE verified = 0");
             $result=$query->result();
@@ -124,7 +141,7 @@
             $query = $this->db->get('orphanages_users');
             if($query->num_rows() > 0)
             {
-                $this->db->query("UPDATE orphanages_users SET email_verified=1 WHERE verification_key=$key");
+                $this->db->query("UPDATE orphanages_users SET email_verified=1 WHERE verification_key=\"$key\"");
                 return true;
             }
             else

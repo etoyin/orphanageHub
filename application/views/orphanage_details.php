@@ -37,6 +37,14 @@
                                 <div class="col-md-11 border-left">
                                 <?=$data[0]->address?>
                                 </div>
+                            </div> 
+                            <div class="row mb-4">
+                                <div class="col-md-1">
+                                    <i class="las la-location-arrow"></i>
+                                </div>
+                                <div class="col-md-11 border-left">
+                                <?=$data[0]->country?>
+                                </div>
                             </div>
                             <div class="row mb-4">
                                 <div class="col-md-1">
@@ -76,7 +84,7 @@
                             </div>
                             <img class="w-100 mt-3" src="<?=base_url('public/images/40564.jpg')?>" alt="" srcset="">
                             <p class="text-success mt-3 text-center" style="cursor: pointer">Click here to view our needs</p>
-                            <button class="p-3 mt-3">Contact Us Today</button>
+                            <!-- <button class="p-3 mt-3">Contact Us Today</button> -->
                         </div>
                     </div>
                 </div>

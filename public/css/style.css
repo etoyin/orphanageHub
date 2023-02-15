@@ -19,9 +19,9 @@ main{
 .nav-div{
 	height: 100%;
 }
-/* #logo{
+#logo{
 	max-height: 100%;
-} */
+}
 nav > div > div > div > a{
 	text-decoration: none;
 	color: #fff;
@@ -152,6 +152,22 @@ nav > div > div > div > a{
 	color: #fff;
 }
 
+/* ==================================Message to email=================== */
+
+.errorField{
+	display: none;
+	color: #ce3232;
+	font-size: 15px;
+}
+
+
+
+
+
+/* ====================================================================== */
+
+
+
 
 
 
@@ -171,9 +187,29 @@ nav > div > div > div > a{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	height: 50vh;
+	height: 40vh;
 	width: 100vh;
 	background-color: #4076ef;
+}
+
+.header-about-blog{
+	background: url('../../public/images/attention-class.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 40vh;
+	width: 100vh;
+	/* padding: 40vw */
+}
+.header-about-blog > div{
+	background-color: #1d1c1c57;
+	max-width: max-content;
+	border-radius: 10px;
+	color: #fafafa;
+}
+.each_cat > a{
+	text-decoration: none;
+	color: rgb(82, 81, 81) ;
 }
 .admin_login{
 	background-color: #4076ef;
@@ -344,6 +380,59 @@ nav > div > div > div > a{
   input:checked + .switch:active::before {
     box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px rgba(0,150,136,0.2);
   }
+.la-spinner, .alert-e, .errorGen{
+	display: none;
+}
+
+/* =============================Animation=================================== */
+.hidden{
+	opacity: 0;
+	filter: blur(5px);
+	transform: translateX(-100%);
+	transition: all 1s;
+}
+.show{
+	opacity: 1;
+	filter: blur(0);
+	transform: translateX(0);
+}
+
+.donate_body{
+	background: url('../../public/images/donation.jpg');
+	/* background-color: #fff; */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	width: 100vw;
+}
+.overlay-donate{
+	background-color: #00000075;
+	width: 60%;
+	color: white;
+	border-radius: 10px;
+	box-shadow: 0px 0px 20px 3px #434344;
+}
+.payment-form-parent{
+	background-color: #000000d7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 4;
+	padding-top: 100px;
+	display: none;
+}
+.payment-form-parent > div{
+	width: 50%;
+	margin: auto;
+	background-color: #f3f3f3;
+	padding: 30px;
+}
+#paymentForm > div.alert{
+	display: none;
+}
 
   /* ================================================================================== */
 @media only screen and (max-width: 1115px) {
@@ -356,6 +445,9 @@ nav > div > div > div > a{
 	.details-overview{
 		width: 350px;
 	}
+	.overlay-donate{
+		width: 100%;
+	}
 
 }
 
@@ -365,9 +457,6 @@ nav > div > div > div > a{
 	}
 	.details-overview{
 		width: 100%;
-	}
-	main{
-		
 	}
 	.owl-carousel{
 		margin-top: 70px;
@@ -387,7 +476,13 @@ nav > div > div > div > a{
 }
 
 @media only screen and (max-width: 600px) {
-    #regForm {
+	.donate_body{
+		padding: 0 !important;
+	}
+	.overlay-donate{
+		margin: 0;
+	}
+    #regForm, #loginForm {
         width: 100%;
 	}
 	.header-about2 > div > h1{
@@ -397,16 +492,18 @@ nav > div > div > div > a{
 		font-size: 8vw;
 	}
 	.social > div{
-		font-size: 5vw;
+		font-size: 13px;
 	}
 	h2.owl-title {
-		font-size: 30px
+		font-size: 25px
 	}
 	.welcome{
 		font-size: 15px;
 	}
 	.h3>em{
 		font-size: 12px;
+		position: relative;
+		top: -20px;
 	}
 	.about{
 		padding: 0;
@@ -418,4 +515,31 @@ nav > div > div > div > a{
 	.card{
 		width: 100% !important;
 	}
+	.learn-more{
+		position: relative;
+		top: -20px;
+	}
+	.about > .header{
+		font-size: 20px;
+	}
+	.about > .body{
+		font-size: 15px;
+	}
+	section.blog-section > h2{
+		font-size: 20px;
+	}
+	.view-more-blog-posts{
+		font-size: 18px;
+	}
+	.payment-form-parent > div{
+		width: 100%
+	}
+}
+@media only screen and (max-width: 600px) {
+	.h1, .h2{
+		font-size: 30px;
+	}
+	.h5{
+		font-size: 15px;
+	}	
 }

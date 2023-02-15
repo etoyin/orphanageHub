@@ -62,13 +62,20 @@ class Admin_Dashboard extends CI_Controller {
 	}
 	public function all_orphanages_view()
 	{
-		$res = $this->User_model->getAllOrphanage();
+		if($this->input->get('country'))
+		{
+			$res = $this->User_model->getAllOrphanageByCountry($this->input->get('country'));
+		}
+		else
+		{
+			$res = $this->User_model->getAllOrphanage();
+		}
 		$this->load->admin_template('admin_view/all_orphanages_view', array('title' => 'All Orphanages', 'data' => $res));
 	}
 
 	public function blog_images_upload()
 	{
-		$accepted_origins = array("http://localhost", "http://192.168.1.1", "https://theorphanagehub.com");
+		$accepted_origins = array("http://localhost", "http://192.168.1.1", "https://theorphanagehub.org");
 
 		/*********************************************
 		 * Change this line to set the upload folder *
@@ -125,6 +132,7 @@ class Admin_Dashboard extends CI_Controller {
 			// Use a location key to specify the path to the saved image resource.
 			// { location : '/your/uploaded/image/file'}
 			echo json_encode(array('location' => $baseurl));
+			// var_dump($baseurl);
 		} else {
 			// Notify editor that the upload failed
 			header("HTTP/1.1 500 Server Error");
@@ -149,7 +157,7 @@ class Admin_Dashboard extends CI_Controller {
 				'category' => $this->input->post('category'),
 				'blog_post' => $this->input->post('post_content'),
 				'title' => $this->input->post('title')
-			);			
+			);
 
 
 			$config['upload_path'] = "./uploads/featured_images";
@@ -175,17 +183,17 @@ class Admin_Dashboard extends CI_Controller {
 				{
 					$data1['status'] = 1;
 					$data1['message'] = "Blog Posted Successfully";
-					echo json_encode($data1);
-					// $this->session->set_flashdata('message',$data1);
-					// redirect('Admin_Dashboard/add_post_view');
+					// echo json_encode($data1);
+					$this->session->set_flashdata('message',$data1);
+					redirect('Admin_Dashboard/add_post_view');
 				}
 				else
 				{
 					$data1['status'] = 0;
 					$data1['message'] = $res;
-					echo json_encode($data1);
-					// $this->session->set_flashdata('message',$data1);
-					// redirect('Admin_Dashboard/add_post_view');
+					// echo json_encode($data1);
+					$this->session->set_flashdata('message',$data1);
+					redirect('Admin_Dashboard/add_post_view');
 				}
 
 			}

@@ -16,7 +16,7 @@ document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
     inputElement.addEventListener('change', () => {
         if(inputElement.files.length){
             fileInput = inputElement.files;
-            console.log(inputElement.files[0].width);
+            // console.log(inputElement.files[0].width);
             updateThumbnail(dropZoneElement, inputElement.files[0]);
         }
     })
@@ -75,6 +75,26 @@ function updateThumbnail(dropZoneElement, file){
         $(".drop-zone__thumb").css("background-image", null)
     }
 }
+
+
+/////////////////////////////////////////////select africa countries///////////////////////////////////////////////////////////////////////
+
+fetch("https://restcountries.com/v3.1/region/africa")
+.then(res => res.json())
+.then(res => {
+    let sortAlpha = res.sort((a, b) => {
+        return (a.name.common < b.name.common ? -1 : 1);
+    })
+    for (let i in sortAlpha){
+        $("#country").append(`
+            <option value="${sortAlpha[i].name.common}">${sortAlpha[i].name.common}</option>
+        `)
+        // return console.log(i);
+    }
+    
+    // return console.log(sortAlpha[5].name);
+})
+
 
 
 
@@ -179,34 +199,36 @@ $("#submitBtn").on("click", function(e){
         fd.append('password', state.password);
         fd.append('phone', state.phone);
         fd.append('owner', state.owner);
+        fd.append('country', state.country);
         fd.append('image', fileInput[0]);
         
         // function pageRedirect() {
         //   window.location.replace('/');
         // }
+        $("#regForm").submit();
       
-        fetch('regSubmit', {
-          method: 'POST',
-          body: fd,
-        })
-        .then(response => {
-          return response.json();
-        })
-        .then(res => {
-            console.log(res);
-          if(res.status == 1){
-            $(".overlay_loader").css("display", "none");
-            $(".overlay_success").css("width", "100%");
-          }else{
-            $(".overlay_loader").css("display", "none");
-            $("#errorMessage").text(res.message);
-            $(".overlay_error").css("width", "100%");
-            // alert("Your email address might have been used for registration before")
-          }
-        })
-        .then(() => {
-            $(".overlay_loader").css("display", "none");
-        })
+        // fetch('regSubmit', {
+        //   method: 'POST',
+        //   body: fd,
+        // })
+        // .then(response => {
+        //   return response.json();
+        // })
+        // .then(res => {
+        //     console.log(res);
+        //   if(res.status == 1){
+        //     $(".overlay_loader").css("display", "none");
+        //     $(".overlay_success").css("width", "100%");
+        //   }else{
+        //     $(".overlay_loader").css("display", "none");
+        //     $("#errorMessage").text(res.message);
+        //     $(".overlay_error").css("width", "100%");
+        //     // alert("Your email address might have been used for registration before")
+        //   }
+        // })
+        // .then(() => {
+        //     $(".overlay_loader").css("display", "none");
+        // })
       }
 
 })

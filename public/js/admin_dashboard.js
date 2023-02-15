@@ -58,6 +58,30 @@ $(document).ready(function(){
 
     })
 
+    /////////////////////////////////////////////select africa countries///////////////////////////////////////////////////////////////////////
+
+fetch("https://restcountries.com/v3.1/region/africa")
+.then(res => res.json())
+.then(res => {
+    let sortAlpha = res.sort((a, b) => {
+        return (a.name.common < b.name.common ? -1 : 1);
+    })
+    for (let i in sortAlpha){
+        $("#country").append(`
+            <option value="${sortAlpha[i].name.common}">${sortAlpha[i].name.common}</option>
+        `)
+        // return console.log(i);
+    }
+    
+    // return console.log(sortAlpha[5].name);
+})
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     ///////////////////////////////////////AD CATEGORY/////////////////////////////////////////////////////
     $("#add_cat").click(function(){
         cat_name = $("#cat_name").val();

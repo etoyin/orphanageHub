@@ -70,6 +70,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('owner', 'Owner', 'required|min_length[2]|max_length[50]'); // Validation for Name Field
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email'); // Validation for E-mail field.
 		$this->form_validation->set_rules('phone', 'Contact No.', 'required|regex_match[/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/]'); // Validation for Contact Field.
+		$this->form_validation->set_rules('country', 'Country Name', 'required|min_length[2]|max_length[50]'); // Validation for country.
 		$this->form_validation->set_rules('address', 'Address', 'required|min_length[10]|max_length[100]'); // Validation for Address Field.
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]'); // Validation for Address Field.
 		// $this->form_validation->set_rules('image', 'Upload Picture', 'required|min_length[6]'); // Validation for Address Field.
@@ -90,6 +91,7 @@ class User extends CI_Controller {
 				'address' => $this->input->post('address'),
 				'password' => $encrypted_password,
 				'owner' => $this->input->post('owner'),
+				'country' => $this->input->post('country'),
 				'email_verified' => 1,
 				'verification_key' => $verification_key
 			);
@@ -98,7 +100,9 @@ class User extends CI_Controller {
 			{
 				$response['status'] = 0;
 				$response['message'] = 'Error! Email already used';
-				echo json_encode($response);
+				$this->session->set_flashdata('message',$response['message']);
+				// echo json_encode($response);
+				redirect('user/register');
 			}
 			else{
 
@@ -114,7 +118,7 @@ class User extends CI_Controller {
 				{
 					$error = array('error' => $this->upload->display_errors());
 					// echo json_encode($error);
-					$this->session->set_flashdata('message',$error);
+					$this->session->set_flashdata('message','error uploading file');
 					redirect('User/register');
 
 				}
@@ -129,36 +133,39 @@ class User extends CI_Controller {
 				
 					if ($res == true)
 					{
-						$subject = "Please verify email for login";
-						$message = "
-							<p>Hi ".$this->input->post('orphanage')."</p>
-							<p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href='".base_url()."User/verify_email/".$verification_key."'>link</a>.</p>
-							<p>Once you click this link your email will be verified and you can login into system.</p>
-							<p>Thanks,</p>";
+						// $subject = "Please verify email for login";
+						// $message = '
+						// 	<p>Hi '.$this->input->post('orphanage').'</p>
+						// 	<p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href="'.base_url().'User/verify_email/'.$verification_key.'">link</a>.</p>
+						// 	<p>Once you click this link your email will be verified and you can login into system.</p>
+						// 	<p>Thanks,</p>';
 
-						$config = array(
-							'protocol'  => 'mail',
-							'smtp_host' => 'mail.theorphanagehub.org',
-							'smtp_port' => 465,
-							'smtp_user' => 'noreply@theorphanagehub.org', 
-							'smtp_pass' => '&fpH_OXDKIfW', 
-							'mailtype'  => 'html',
-							'charset'   => 'iso-8859-1',
-							'wordwrap'  => TRUE
-						);
+						// $config = array(
+						// 	'protocol'  => 'mail',
+						// 	'smtp_host' => 'mail.theorphanagehub.org',
+						// 	'smtp_port' => 465,
+						// 	'smtp_user' => 'noreply@theorphanagehub.org', 
+						// 	'smtp_pass' => '&fpH_OXDKIfW', 
+						// 	'mailtype'  => 'html',
+						// 	'charset'   => 'iso-8859-1',
+						// 	'wordwrap'  => TRUE
+						// );
 
-						$this->load->library('email', $config);
-						$this->email->set_newline("\r\n");
-						$this->email->from('noreply@theorphanagehub.org');
-						$this->email->to($this->input->post('email'));
-						$this->email->subject($subject);
-						$this->email->message($message);
+						// $this->load->library('email', $config);
+						// $this->email->set_newline("\r\n");
+						// $this->email->from('noreply@theorphanagehub.org');
+						// $this->email->to($this->input->post('email'));
+						// $this->email->subject($subject);
+						// $this->email->message($message);
 						
-						if($this->email->send())
-						{
+						// if($this->email->send())
+						// {
 							$this->session->set_flashdata('message', 'Check in your email for email verification mail');
 							redirect('user/register');
-						}
+						// }else{
+						//     $this->session->set_flashdata('message', 'Fail to send to email');
+						// 	redirect('user/register');
+						// }
 						$response['status'] = 1;
 						$response['message'] = 'Form Submitted Successfully';
 						// echo json_encode($response);
@@ -166,6 +173,8 @@ class User extends CI_Controller {
 					else{
 						$response['status'] = 0;
 						$response['message'] = 'Error in form Submission!';
+						$this->session->set_flashdata('message', $response['message']);
+							redirect('user/register');
 						// echo json_encode($response);
 					}
 
