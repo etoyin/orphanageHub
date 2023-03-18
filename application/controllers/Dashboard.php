@@ -71,6 +71,23 @@ class Dashboard extends CI_Controller {
 
 	}
 
+	public function event_post()
+	{
+		$data['name'] = $this->input->post('name');
+		$data['date'] = $this->input->post('date');
+		$data['time'] = $this->input->post('time');
+		$data['location'] = $this->input->post('location');
+		$data['description'] = $this->input->post('description');
+		$data['orphanage_id'] = $this->input->post('id');
+		$data['orphanage_name'] = $this->input->post('orphanageName');
+
+		
+		$res = $this->User_model->event_insert($data);
+
+		echo json_encode($res);
+
+	}
+
 	// public function getOneOrphanage($id)
 	// {
 	// 	$res = $this->User_model->getOneOrphanage($id);

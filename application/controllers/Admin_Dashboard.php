@@ -325,6 +325,68 @@ class Admin_Dashboard extends CI_Controller {
 	}
 
 
+	function delete_blog()
+	{
+		$data['id'] = $this->input->get('id');
+		$data['featured_image'] = $this->input->get('featured_image');
+		$data['blog_images'] = json_decode($this->input->get('blog_images'));
+		$data['pin'] = $this->input->post('pin');
+
+		$res = $this->Admin_Dashboard_model->authorize($data['pin']);
+		if($res)
+		{
+			foreach($data['blog_images'] as $key=>$row)
+			{
+				if (file_exists('uploads/blog_images/'.$row))
+				{
+					unlink('uploads/blog_images/'.$row);
+				}
+			}
+
+			if (file_exists('uploads/featured_images/'.$data['featured_image']))
+			{
+				unlink('uploads/featured_images/'.$data['featured_image']);
+			}
+
+			$response = $this->Admin_Dashboard_model->delete_blog($data['id']);
+
+			if ($response)
+			{
+				$message['status'] = 1;
+				$message['message'] = "Deleted Successfully";	
+				$this->session->set_flashdata('message',$message);
+				redirect(base_url('Blog/index'));
+			}
+			//var_dump($data['blog_images']);
+		}
+		else{
+			$message['status'] = 0;
+			$message['message'] = "Not Authorized";
+			$this->session->set_flashdata('message',$message);
+			redirect(base_url('Blog/get_blog_detail?id='.$data['id']));
+		}
+		// var_dump($data['blog_images']);
+		
+
+		// echo json_encode($data);
+
+		// if($res == '')
+		// {
+		// 	$data1['status'] = 1;
+		// 	$data1['message'] = "Admin deleted Successfully";
+		// 	$this->session->set_flashdata('message',$data1);
+		// 	echo json_encode($data1);
+		// 	// redirect('Admin_Dashboard/add_admin_view');
+		// }
+		// else
+		// {
+		// 	$data1['status'] = 0;
+		// 	$data1['message'] = $res;
+		// 	$this->session->set_flashdata('message',$data1);
+		// 	echo json_encode($data1);
+		// 	// redirect('Admin_Dashboard/add_admin_view');
+		// }
+	}
 
 
 

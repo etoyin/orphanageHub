@@ -21,8 +21,19 @@
             ?>
         </div>
         <div class="">
+        <?php
+            $message = $this->session->flashdata('message');
+            if($message && $message['status'] == 1)
+            {
+                echo '
+                <div class="alert alert-success">
+                    '.$message['message'].'
+                </div>
+                ';
+            }
+        ?>
             <!-- <h4 class="text-center pb-2"></h4> -->
-            <div class="view_body ml-5 mr-5 d-flex">
+            <div class="view_body ml-5 mr-5 d-flex flex-wrap">
                 <?php 
                     // echo json_encode($blog['all_data']);
 

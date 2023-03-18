@@ -1,4 +1,5 @@
 <div>
+    
     <main class="about-main">
         <img class="orphanage-page" src="<?=base_url("uploads/".$data[0]->email.'/'.$data[0]->cover_photo)?>" style="width: 100%"/>
         <div class="orphanage_info p-5">
@@ -73,6 +74,137 @@
                         </div>
 
                     </div>
+
+
+                    <section class="reply-section p-5">
+
+
+                        <div id="details_comments" class="card w-75 m-auto mt-5">
+                            <div class="card-body">
+                                <div class="d-flex flex-start align-items-center">
+                                    <div>
+                                        <h6 class="fw-bold text-primary mb-1" id="name_comment">Lily Coleman</h6>
+                                        <p class="text-muted small mb-0">
+                                        Shared publicly - <span id="comment_date"></span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p class="mt-3 mb-4 pb-2" id="comment">
+                                </p>
+                                <div class="replies">
+                                
+                                </div>
+                                <div class="small d-flex justify-content-start">
+                                <!-- <a href="#!" class="d-flex align-items-center me-3">
+                                    <i class="far fa-thumbs-up me-2"></i>
+                                    <p class="mb-0">Like</p>
+                                </a> -->
+                                <!-- <a href="#!" class="d-flex align-items-center me-3">
+                                    <i class="far fa-comment-dots me-2"></i>
+                                    <p class="mb-0">Reply</p>
+                                </a> -->
+                                
+                                <!-- <a href="#!" class="d-flex align-items-center me-3">
+                                    <i class="fas fa-share me-2"></i>
+                                    <p class="mb-0">Share</p>
+                                </a> -->
+                                </div>
+                            </div>
+                            <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                                <div class="d-flex flex-start w-100">
+                                    <div class="form-outline w-100">
+                                    <p data_id="" id="comment_id"></p>
+                                    <p data-user_name="<?=($user ? $user[0]->name : "" )?>" id="user_name_reply"></p>
+                                    <?php
+                                        if (!$this->session->userdata('id'))
+                                        {
+                                            echo '<input type="text" id="name_reply" class="my-1 form-control" placeholder="Name..." />';
+                                        }
+                                    ?>
+                                        <p class="errorField error_reply" >Enter comment!</p>
+                                        <textarea class="form-control" id="reply_content" rows="4"
+                                        style="background: #fff;"></textarea>
+                                        <label class="form-label" for="textAreaExample">Message</label>
+                                    </div>
+                                </div>
+                                <div class="float-end mt-2 pt-1">
+                                    <button type="button" id="submit_reply" class="btn btn-primary btn-sm">Post reply</button>
+                                    <button type="button" class="cancel btn btn-outline-primary btn-sm">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    <section style="background-color: #eee;">
+                        <div class="m-3 p-3">
+                            <div class="card">
+                                <?php
+                                    foreach ($comments as $key => $value) {
+                                        echo '
+                                        <div class="card-body">
+                                        <div class="d-flex flex-start align-items-center">
+                                            <div>
+                                                <h6 class="fw-bold text-primary mb-1">'.$value->name_comment.'</h6>
+                                                <p class="text-muted small mb-0">
+                                                Shared publicly - '.$value->created_at.'
+                                                </p>
+                                            </div>
+                                        </div>
+    
+                                        <p class="mt-3 mb-4 pb-2">'.$value->comment.'</p>
+                                        
+    
+                                        <div class="form-outline mb-4">
+                                            <i class="lar la-comment me-2"></i>'.count($value->replies).'
+                                            <label data_id2="'.$value->id.'" class="form-label reply-button" for="addANote">Comments</label>
+                                        </div>
+                                        <div class="small d-flex justify-content-start">
+                                        <!-- <a href="#!" class="d-flex align-items-center me-3">
+                                            <i class="far fa-thumbs-up me-2"></i>
+                                            <p class="mb-0">Like</p>
+                                        </a> -->
+                                        
+                                        <!-- <a href="#!" class="d-flex align-items-center me-3">
+                                            <i class="fas fa-share me-2"></i>
+                                            <p class="mb-0">Share</p>
+                                        </a> -->
+                                        </div>
+                                    </div>';        
+                                    }
+                                ?>
+                                
+                                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                                    <div class="d-flex flex-start w-100">
+                                    <div class="form-outline w-100">
+                                    <p data-id="<?=$data[0]->id?>" id="orphanage_id"></p>
+                                    <p data-user_name="<?=($user ? $user[0]->name : "" )?>" id="user_name"></p>
+                                    <?php
+                                    // echo json_encode($comments);
+
+                                        if (!$this->session->userdata('id'))
+                                        {
+                                            echo '<input type="text" id="name_comment" class="my-1 form-control" placeholder="Name..." />';
+                                        }
+                                    ?>
+                                        <p class="errorField" >Enter comment!</p>
+                                        <textarea class="form-control" id="comment" rows="4"
+                                        style="background: #fff;"></textarea>
+                                        <label class="form-label" for="textAreaExample">Message</label>
+                                    </div>
+                                    </div>
+                                    <div class="float-end mt-2 pt-1">
+                                    <button type="button" id="send_comments" class="btn btn-primary btn-sm">Post comment</button>
+                                    <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
                 </div>
                 <div class="details-overview">
                     <div class="card-div">

@@ -10,6 +10,29 @@
             return true;
         }
 
+        public function getAllEvents()
+        {
+            $query = $this->db->query("SELECT * FROM events");
+            $result=$query->result();
+            return array("all_data" => $result);
+        }
+
+        public function event_insert($data){
+            $this->db->insert('events', $data);
+            return true;
+        }
+
+        public function comments_insert($data){
+            $this->db->insert('comments', $data);
+            return true;
+        }
+
+        public function reply_insert($data)
+        {
+            $this->db->insert('reply_table', $data);
+            return true;
+        }
+
         // UPDATE `images` SET `orphanage_id` = '13' WHERE `images`.`id` = 2;
         public function getAllOrphanage()
         {
@@ -46,6 +69,26 @@
         {
             $query = $this->db->query("SELECT * FROM orphanages_users WHERE id=$id");
             $result=$query->result();
+            return $result;
+        }
+        public function getOneComment($id)
+        {
+            $query = $this->db->query("SELECT * FROM comments WHERE id=$id");
+            $result=$query->result();
+            foreach ($result as $key=>$value) {
+                $query2 = $this->db->query("SELECT * FROM reply_table WHERE comment_id=$value->id");
+                $result[$key]->replies = $query2->result();
+            }
+            return $result;
+        }
+        public function getCommentsbyId($id)
+        {
+            $query = $this->db->query("SELECT * FROM comments WHERE orphanage_id=$id");
+            $result=$query->result();
+            foreach ($result as $key=>$value) {
+                $query2 = $this->db->query("SELECT * FROM reply_table WHERE comment_id=$value->id");
+                $result[$key]->replies = $query2->result();
+            }
             return $result;
         }
 

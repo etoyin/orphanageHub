@@ -85,6 +85,52 @@
 
         }
 
+        public function authorize($data)
+        {
+            $adminId = $this->session->userdata('adminId');
+            if (!$adminId){
+                return false;
+            }
+            else{
+                $this->db->where('id', $adminId);
+                $query = $this->db->get('admin');
+
+                if($query->num_rows() > 0)
+                {
+                    foreach($query->result() as $row)
+                    {
+                        $store_pin = $this->encrypt->decode($row->pin);
+    
+                        if($data == $store_pin && $row->type)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public function delete_blog($data)
+        {
+            $adminId = $this->session->userdata('adminId');
+            
+            if ($this->db->query("DELETE FROM blog_table WHERE id=$data"))
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function insert_admin($data, $pin)
         {
             $adminId = $this->session->userdata('adminId');

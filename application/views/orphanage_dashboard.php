@@ -176,6 +176,29 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="">
+                    <p class="getDataId" data_id="<?=$data[0]->id?>"></p>
+                    <p class="getDataName" data_name="<?=$data[0]->name?>"></p>
+                    <div>
+                        <h1>Post Event</h1>
+                        <form method="post" id="create_event">
+                            <label for="event-name">Event Name:</label>
+                            <input type="text" id="event-name" name="event_name" required><br><br>
+                            <label for="event-date">Event Date:</label>
+                            <input type="date" id="event-date" name="event_date" required><br><br>
+                            <label for="event-time">Event Time:</label>
+                            <input type="time" id="event-time" name="event_time" required><br><br>
+                            <label for="event-location">Event Location:</label>
+                            <input type="text" id="event-location" name="event_location" required><br><br>
+                            <label for="event-description">Event Description:</label><br>
+                            <textarea required id="event-description" name="event_description" rows="4" cols="50"></textarea><br><br>
+                            <input type="submit" value="Post Event">
+                        </form>
+                    </div>
+                </div>
+
+
             </div>
             
         </div>
