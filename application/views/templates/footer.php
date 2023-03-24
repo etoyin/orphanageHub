@@ -2,7 +2,7 @@
             <div class="social">
                 <div class="p-4 d-flex flex-md-wrap justify-content-between">
                     <div>
-                        <i class="las la-copyright"></i> 2023 The Orphanage all rights reserved | 806 000 5000 | info@theorphanagehub.org | PO BOX 1403, Lagos, NG.
+                        <i class="las la-copyright"></i> 2023 The Orphanage all rights reserved | +234 706 663 3757 | info@theorphanagehub.org | Lagos, NG.
                     </div>
                     <div>
                         <a href="#" target="_blank" rel="noopener noreferrer">

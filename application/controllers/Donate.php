@@ -35,6 +35,8 @@ class Donate extends CI_Controller {
     {
         $ref = $this->input->get('reference');
         $curl = curl_init();
+
+        // var_dump($ref);
   
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://api.paystack.co/transaction/verify/".$ref,
@@ -45,7 +47,7 @@ class Donate extends CI_Controller {
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-            "Authorization: Bearer sk_test_daae4ae009a4e566eacd46aa1dd6ca3e1092962b",
+            "Authorization: Bearer sk_test_b04a5318c53d7d5d28097b0fb7b9d10dd7c39e5c",
             "Cache-Control: no-cache",
             ),
         ));

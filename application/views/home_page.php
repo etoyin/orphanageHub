@@ -36,31 +36,52 @@
         
 
         <section id="about">
-            <div class="about">
-                <div class="d-flex flex-wrap m-auto" >
-                    <div class="about p-4 m-auto" >
-                        <div class="hidden header text-center">
+            <div class="aboutA">
+                <div class="d-flex align-items-start flex-wrap" >
+                    <div class="about px-3">
+                        <div class="hidden header">
                             our Vision
+                            <div class="underline"></div>
                         </div>
-                        <div class=" hidden body h5 text-center">
+                        <div class=" hidden mt-3 body h5">
                           <p>
                             To care for all children
                           </p>
                         </div>
-                        <div class="header hidden text-center">
+                        <div class="header hidden">
                             our Mission
+                            <div class="underline"></div>
                         </div>
-                        <div class="body h5 hidden">
-                          <p>
-                                <p>To make orphanage and care homes easily accessible</p>
-                                <p>To facilitate fostering and adoption</p>
-                                <p>To meet the needs of the less privileged children</p>
-                                <p>To be a voice for children</p>
-                          </p>
+                        <div class="body h5 mt-3 hidden">
+                            <p>To make orphanage and care homes easily accessible</p>
+                            <p>To facilitate fostering and adoption</p>
+                            <p>To meet the needs of the less privileged children</p>
+                            <p>To be a voice for children</p>
                         </div>
                     </div>
-                    <div class="about-img p-5 m-auto hidden" >
-                        <img width="100%" src="<?=base_url('public/images/3-children.jpg')?>" class="m-auto" alt="A Child">
+                    <div class="about-img pl-3" >
+                        <div class="header hidden about_us_head mb-3">
+                            About Us
+                            <div class="underline"></div>
+                        </div>
+                        <p class="hidden">This hub is a platform for easy access to all Orphanages in Africa.</p>
+                        <p class="hidden">The Visioner, Onayiga Damilola Blessing, is a Nigerian Lawyer with a large heart for needy children. 
+                            She hopes that everyone who likes to visit and meet the need of orphanages finds this platform of great 
+                        help.</p>
+                        <p class="hidden">We encourage all orphanages to create an account and update the account from time to time.</p>
+                        <p class="hidden">For non-orphanage users, watch out for scammers and avoid sending anything without actual visit. 
+                            If you must send online, we can be of help through donations <a href="<?=base_url('Donate/index')?>">here</a>. 
+                            Every donation will be used to meet the need of orphanages with due accountability.</p>
+                        <div class=" hidden underline my-3"></div>    
+                        <div class="visioner-img-container hidden">
+                            <img width="60%" src="<?=base_url('public/images/damilo.jpg')?>" class="m-auto" alt="Damilola Onayiga" title="The Visioner of theOrphanageHub">
+                        </div>
+                        <br>
+                        <div class="caption hidden">
+                            <h5 class="font-weight-bold">Onayiga Damilola Blessing</h5>
+                            <p>Visioner, The Orphanage hub</p>
+                            <div class="underline my-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,7 +115,7 @@
                 </div>
             </div>
         </section> -->
-        <section style="border-top: 1px solid #bbb" class="blog-section">
+        <!-- <section style="border-top: 1px solid #bbb" class="blog-section">
             <h2 class="text-center font-weight-bold mt-3 hidden">Our Blog</h2>
             <div class="view_body ml-5 mr-5 d-flex">
                 <?php 
@@ -130,7 +151,7 @@
                     View More
                 </a>
             </div>
-        </section>
+        </section> -->
         <!-- <article>
             <div class="blog p-5">
                 <div>

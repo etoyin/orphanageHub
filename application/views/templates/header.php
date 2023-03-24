@@ -64,7 +64,7 @@
                         ?>
                         
                         
-                        <a data="about" class="nav-item nav-link ml-5 active" href="<?=base_url('About')?>">About Us</a>
+                        <!-- <a data="about" class="nav-item nav-link ml-5 active" href="<?=base_url('About')?>">About Us</a> -->
                         <a data="orphanages" class="nav-item nav-link ml-5 active" href="<?=base_url('Children_Homes/index')?>">Orphanages</a>
                         <a data="events" class="nav-item nav-link ml-5 active" href="<?=base_url('Events/index')?>">Events</a>
                         <a data="blog" class="nav-item nav-link ml-5 active" href="<?=base_url('Blog/index')?>">Blog</a>

@@ -62,7 +62,11 @@ nav > div > div > div > a{
 	align-self: flex-end;
 	border-radius: 1rem;
 }
-.about{
+#about{
+	background-color: #060629;
+	color: white;
+}
+.aboutA{
 	padding: 50px;
 	font-family: 'Montserrat', sans-serif;
 	text-align: justify;
@@ -70,23 +74,53 @@ nav > div > div > div > a{
 .about > .d-flex{
 	width: 100%;
 }
-.about > .header {
+.about > .header, .about_us_head {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 2rem;
 }
 .about > .body{
-	line-height: 40px;
+	line-height: 30px;
 }
 .about-img{
 	width: 500px;
 }
+
+/* .visioner-img-container{
+	width: 500px; 
+	height: 325px;
+	position: relative;
+	top: -100px;
+} */
+
+/* .visioner-img-container img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	clip-path: inset(100px 20px 100px 20px);
+} */
+
+.caption{
+	position: relative;
+	/* top: -600px; */
+}  
+
+.underline{
+	height: 8px;
+	width: 100px;
+	border-radius: 5px;
+	background-color: #ffffff;
+}
+
 .impact{
 	background: url('../../public/images/map.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	/* background-position-y: center; */
 }
+
 .impact > div > .header{
 	font-size: 3rem;
 	font-weight: 600;
@@ -471,7 +505,10 @@ nav > div > div > div > a{
 	font-size: 14px;
 	color: #666;
 }
-  
+
+/* .search-country{
+	background-color: #04f704;
+} */
   /* ================================================================================== */
 @media only screen and (max-width: 1115px) {
 	.details-overview{
@@ -490,6 +527,13 @@ nav > div > div > div > a{
 }
 
   @media only screen and (max-width: 850px) {
+	.header-about2 > div{
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.header-children-homes{
+		height: 50vh;
+	}
 	.card-div{
 		position: static !important;
 	}
@@ -517,6 +561,9 @@ nav > div > div > div > a{
 	/* .content-with-images > p > img{
 		width: 100%;
 	} */
+	.search-country{
+		width: 100% !important;
+	}
 	.donate_body{
 		padding: 0 !important;
 	}
@@ -560,10 +607,10 @@ nav > div > div > div > a{
 		position: relative;
 		top: -20px;
 	}
-	.about > .header{
+	.about > .header, .about_us_head{
 		font-size: 20px;
 	}
-	.about > .body{
+	.about > .body, .about_us_body{
 		font-size: 15px;
 	}
 	section.blog-section > h2{

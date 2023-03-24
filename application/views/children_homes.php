@@ -2,13 +2,23 @@
     <main class="about-main">
         <div class="header-children-homes header-about2" style="width: 100%">
             <div class="text-center">
-                <h1>Explore Orphanages here</h1>
+                <h2 >Explore Orphanages here</h2>
                 <form action="<?=base_url('Children_Homes/index')?>" method="get">
-                    <div class="d-flex w-50 m-auto mb-5 form-group">
+
+                    <div class="input-group d-flex w-50 m-auto mb-5 search-country">
+                        <!-- <input type="text" class="form-control" placeholder="Search this blog"> -->
                         <select class="form-control" name="country" id="country">
                             <option value="">Select a country</option>
                         </select>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="las la-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <!-- <button type="submit" class="btn btn-sm btn-primary">Search</button> -->
                     </div>
                 </form>
             </div>

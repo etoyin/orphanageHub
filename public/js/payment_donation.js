@@ -5,7 +5,7 @@ function payWithPaystack(e) {
   e.preventDefault();
 
   let handler = PaystackPop.setup({
-    key: 'pk_test_7b0abe2ad79724deb34a9ca7dedd1822914e4e66', // Replace with your public key
+    key: 'pk_test_51d1835dc32e6d4a5e52bc350f8fb78ceca9cd8e', // Replace with your public key
     email: document.getElementById("email-address").value,
     amount: document.getElementById("amount").value * 100,
     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
@@ -20,6 +20,7 @@ function payWithPaystack(e) {
       fetch('verify_transaction?reference='+response.reference)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if(res.status){
             $(".alert").css("display", "block").addClass("alert-success").text(res.message);
             $(".alert").removeClass("alert-danger");
